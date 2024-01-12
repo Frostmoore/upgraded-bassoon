@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040004622026",
+    "project_id": "agenziax-628e3",
+    "storage_bucket": "agenziax-628e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040004622026:android:37b7485afd93f134663633",
+        "android_client_info": {
+          "package_name": "com.example.agenzia_x"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqbSvo85Mc3sDgJr-_KaTA6MCFehpAVLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
