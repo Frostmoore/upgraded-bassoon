@@ -212,9 +212,9 @@ final Uri REVIEW_LINK = Uri.parse('https://g.page/r/CdRhtF4CB0MfEBM/review');
 const String MESSAGGIO = 'Contenuto';
 
 // CHIAMATE RAPIDE
-const String CHIAMATA_RAPIDA_UNO = 'Numero 1';
-const String CHIAMATA_RAPIDA_DUE = 'Numero 2';
-const String CHIAMATA_RAPIDA_TRE = 'Numero 3';
+const String CHIAMATA_RAPIDA_UNO = 'Chiamata Rapida';
+const String CHIAMATA_RAPIDA_DUE = 'Chiamata Whatsapp';
+const String CHIAMATA_RAPIDA_TRE = 'e-mail Rapida';
 final Uri LINK_CHIAMATA_RAPIDA_UNO = Uri.parse('tel:');
 final Uri LINK_CHIAMATA_RAPIDA_DUE = Uri.parse('https://wa.me/');
 final Uri LINK_CHIAMATA_RAPIDA_TRE = Uri.parse('mailto:');
