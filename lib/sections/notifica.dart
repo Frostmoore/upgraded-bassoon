@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class Notifica extends StatelessWidget {
-  const Notifica({super.key});
+  final data;
+  const Notifica({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class Notifica extends StatelessWidget {
             style: BorderStyle.solid,
             color: Colors.black,
           ),
-          color: Color.fromARGB(25, 255, 0, 0),
+          color: const Color.fromARGB(25, 255, 0, 0),
         ),
         child: Padding(
           padding: EdgeInsets.all(20),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class NomeSocial extends StatefulWidget {
-  const NomeSocial({super.key});
+  final data;
+  const NomeSocial({super.key, required this.data});
 
   @override
   State<NomeSocial> createState() => _NomeSocialState();

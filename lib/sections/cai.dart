@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class Cai extends StatefulWidget {
-  const Cai({super.key});
+  final data;
+  const Cai({super.key, required this.data});
 
   @override
   State<Cai> createState() => _CaiState();

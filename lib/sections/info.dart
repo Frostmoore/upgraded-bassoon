@@ -42,7 +42,7 @@ class _InfoState extends State<Info> {
           ),
         ),
         constants.SPACER,
-        if (constants.NOTIFICA_TEXT != '') Notifica(),
+        if (constants.NOTIFICA_TEXT != '') Notifica(data: widget.data),
         constants.SPACER,
         InformazioniAgenzie(data: widget.data),
       ],

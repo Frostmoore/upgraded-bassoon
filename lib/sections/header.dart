@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class Header extends StatefulWidget {
-  const Header({super.key});
+  final data;
+  Header({super.key, required this.data});
 
   @override
   State<Header> createState() => _HeaderState();

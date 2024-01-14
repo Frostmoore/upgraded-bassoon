@@ -4,7 +4,8 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ChiamataRapida extends StatefulWidget {
-  const ChiamataRapida({super.key});
+  final data;
+  const ChiamataRapida({super.key, required this.data});
 
   @override
   State<ChiamataRapida> createState() => _ChiamataRapidaState();

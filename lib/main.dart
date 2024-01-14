@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var url = Uri.https('jsonplaceholder.typicode.com', '/todos/1');
     var response = await http.get(url);
     var responseBody = convert.jsonDecode(response.body) as Map;
-    print(responseBody);
+    print(responseBody); // Remove in production
     return responseBody;
   }
 
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             body: HomePage(data: snapshot.data),
-            floatingActionButton: const ChiamataRapida(),
+            floatingActionButton: ChiamataRapida(data: snapshot.data),
           );
         } else {
           return const Center(child: CircularProgressIndicator());

@@ -21,14 +21,14 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Header(),
+          Header(data: widget.data),
           constants.SPACER,
-          NomeSocial(),
+          NomeSocial(data: widget.data),
           Info(data: widget.data),
           constants.SPACER,
-          Contatti(),
+          Contatti(data: widget.data),
           constants.SPACER,
-          Sinistro(),
+          Sinistro(data: widget.data),
           constants.SPACER,
           constants.SPACER,
           constants.SPACER,

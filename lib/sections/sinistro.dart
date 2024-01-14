@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class Sinistro extends StatefulWidget {
-  const Sinistro({super.key});
+  final data;
+  const Sinistro({super.key, required this.data});
 
   @override
   State<Sinistro> createState() => _SinistroState();

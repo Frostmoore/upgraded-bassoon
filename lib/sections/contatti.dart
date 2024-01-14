@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class Contatti extends StatefulWidget {
-  const Contatti({super.key});
+  final data;
+  const Contatti({super.key, required this.data});
 
   @override
   State<Contatti> createState() => _ContattiState();
