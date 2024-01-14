@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+
+Future getData() async {
+  var url = Uri.https('jsonplaceholder.typicode.com', '/todos/1');
+  var response = await http.get(url);
+  if (response.statusCode == 200) {
+    var jsonResponse =
+        convert.jsonDecode(response.body) as Map<String, dynamic>;
+    //print(jsonResponse);
+    return jsonResponse;
+  }
+}
 
 //
 // PRINCIPALI

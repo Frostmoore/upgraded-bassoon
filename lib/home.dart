@@ -8,7 +8,8 @@ import 'package:agenzia_x/sections/header.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final data;
+  const HomePage({super.key, required this.data});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,13 +18,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Header(),
           constants.SPACER,
           NomeSocial(),
-          Info(),
+          Info(data: widget.data),
           constants.SPACER,
           Contatti(),
           constants.SPACER,

@@ -1,4 +1,6 @@
 import 'package:agenzia_x/assets/constants.dart' as constants;
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 import 'package:agenzia_x/firebase_options.dart';
 import 'package:agenzia_x/home.dart';
 import 'package:agenzia_x/sections/web_view_container.dart';
@@ -7,13 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'dart:developer';
 
 Future<void> _messageHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   RemoteNotification? notification = message.notification;
-  if (notification != null) {
-    //print("Notification received when app in background");
-  }
+  if (notification != null) {}
 }
 
 void main() async {
@@ -21,6 +22,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
 
   runApp(const MyApp());
@@ -56,20 +58,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future getData() async {
+    var url = Uri.https('jsonplaceholder.typicode.com', '/todos/1');
+    var response = await http.get(url);
+    var responseBody = convert.jsonDecode(response.body) as Map;
+    print(responseBody);
+    return responseBody;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(constants.TITLE),
-          ],
-        ),
-      ),
-      body: const HomePage(),
-      floatingActionButton: const ChiamataRapida(),
+    return FutureBuilder(
+      future: getData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              title: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(constants.TITLE),
+                ],
+              ),
+            ),
+            body: HomePage(data: snapshot.data),
+            floatingActionButton: const ChiamataRapida(),
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 }

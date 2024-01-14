@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class InformazioniAgenzie extends StatefulWidget {
-  const InformazioniAgenzie({super.key});
+  final data;
+
+  const InformazioniAgenzie({super.key, required this.data});
 
   @override
   State<InformazioniAgenzie> createState() => _InformazioniAgenzieState();
@@ -59,10 +61,10 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                       textAlign: TextAlign.center,
                     ),
                     constants.SPACER,
-                    const Text(
-                      'Orari di Apertura:',
+                    Text(
+                      widget.data['title'], // COPIARE QUI
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),

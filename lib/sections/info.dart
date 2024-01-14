@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class Info extends StatefulWidget {
-  const Info({super.key});
+  final data;
+  const Info({super.key, required this.data});
 
   @override
   State<Info> createState() => _InfoState();
@@ -43,7 +44,7 @@ class _InfoState extends State<Info> {
         constants.SPACER,
         if (constants.NOTIFICA_TEXT != '') Notifica(),
         constants.SPACER,
-        InformazioniAgenzie(),
+        InformazioniAgenzie(data: widget.data),
       ],
     );
 
