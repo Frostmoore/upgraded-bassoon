@@ -18,6 +18,9 @@ class _ContattiState extends State<Contatti> {
         constants.IMG_PATH + contatti_immagine_dirty.replaceAll('\\', '/');
     var contatti_titolo = widget.data['contatti_titolo'];
     var contatti_testo = widget.data['contatti_testo'];
+    var numeriUtiliLabels = widget.data['numeri_utili_labels'].split('|');
+    var numeriUtiliColori = widget.data['numeri_utili_colori'].split('|');
+    var numeriUtiliLinks = widget.data['numeri_utili_link'].split('|');
 
     return Column(
       children: [
@@ -32,7 +35,7 @@ class _ContattiState extends State<Contatti> {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(8, 18, 8, 8),
+              padding: const EdgeInsets.fromLTRB(8, 18, 8, 8),
               child: Text(
                 contatti_titolo,
                 textAlign: TextAlign.start,
@@ -58,55 +61,103 @@ class _ContattiState extends State<Contatti> {
                     textAlign: TextAlign.center,
                   ),
                   constants.SPACER,
-                  Text(
+                  const Text(
                     'Numeri Utili:',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () => constants.openUrl(constants.EMAIL_LINK),
-                      icon: const Icon(Icons.monitor_heart),
-                      label: const Text('Salute'),
-                      style: constants.STILE_BOTTONE,
+              if (numeriUtiliLinks[0] != '')
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () =>
+                            constants.openUrl(Uri.parse(numeriUtiliLinks[0])),
+                        icon: const Icon(Icons.monitor_heart),
+                        label: Text(numeriUtiliLabels[0]),
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Color(
+                              int.parse(numeriUtiliColori[0]),
+                            ),
+                          ),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
               const SizedBox(height: 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //const SizedBox(width: 30),
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () => constants.openUrl(constants.SITO_LINK),
-                      icon: const Icon(Icons.taxi_alert),
-                      label: const Text('Assistenza Stradale'),
-                      style: constants.STILE_BOTTONE,
+              if (numeriUtiliLinks[1] != '')
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //const SizedBox(width: 30),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () =>
+                            constants.openUrl(Uri.parse(numeriUtiliLinks[1])),
+                        icon: const Icon(Icons.taxi_alert),
+                        label: Text(numeriUtiliLabels[1]),
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Color(
+                              int.parse(numeriUtiliColori[1]),
+                            ),
+                          ),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
               const SizedBox(height: 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () => constants.openUrl(constants.MAPPA_LINK),
-                      icon: const Icon(Icons.directions_car),
-                      label: const Text('Noleggio'),
-                      style: constants.STILE_BOTTONE,
+              if (numeriUtiliLinks[2] != '')
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () =>
+                            constants.openUrl(Uri.parse(numeriUtiliLinks[2])),
+                        icon: const Icon(Icons.directions_car),
+                        label: Text(numeriUtiliLabels[2]),
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Color(
+                              int.parse(numeriUtiliColori[2]),
+                            ),
+                          ),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             ],
           ),
         ),

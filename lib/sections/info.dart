@@ -25,6 +25,8 @@ class _InfoState extends State<Info> {
 
     return Column(
       children: [
+        constants.SPACER,
+        if (widget.data['notifica_testo'] != '') Notifica(data: widget.data),
         SizedBox(
           width: width - 16,
           height: 70,
@@ -45,8 +47,6 @@ class _InfoState extends State<Info> {
             ),
           ),
         ),
-        constants.SPACER,
-        if (constants.NOTIFICA_TEXT != '') Notifica(data: widget.data),
         constants.SPACER,
         InformazioniAgenzie(data: widget.data),
       ],

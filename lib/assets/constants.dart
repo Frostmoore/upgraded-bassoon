@@ -24,8 +24,8 @@ const Color COLORE_SECONDARIO = Color(0xff233b66);
 const Color COLORE_TERZIARIO = Color(0xff233b66);
 const Color BIANCO = Color(0xffffffff);
 const Color TRASPARENTE = Color(0x00ffffff);
-const String ID = '3';
-const String TOKEN = 'LHgC8?QbYO';
+const String ID = '5';
+const String TOKEN = '2ycACiLdsh';
 
 //
 // STILI

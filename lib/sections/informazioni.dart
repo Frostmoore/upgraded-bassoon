@@ -13,10 +13,35 @@ class InformazioniAgenzie extends StatefulWidget {
 class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
   @override
   Widget build(BuildContext context) {
-    Map arrayNomi = constants.SEDI_NOMI_ARRAY.asMap();
+    //Map arrayNomi = constants.SEDI_NOMI_ARRAY.asMap();
+
+    var listaNomi = widget.data['info_nomi_sedi'];
+    var listaIndirizzi = widget.data['info_indirizzi_sedi'];
+    var listaTestoOrari = widget.data['info_testo_orari'];
+    var listaOrariSedi = widget.data['info_orari_sedi'];
+    var listaRecensioniSedi = widget.data['info_recensioni_sedi'];
+    var listaTelefonoSedi = widget.data['info_telefono_sedi'];
+    var listaEmailSedi = widget.data['info_email_sedi'];
+    var listaMappaSedi = widget.data['info_mappa_sedi'];
+    var listaSitoSedi = widget.data['info_sito_sedi'];
+    //var gigi = 'stronzo';
+
+    // Create lists
+    var info_nomi_sedi = listaNomi.split('|');
+    var info_indirizzi_sedi = listaIndirizzi.split('|');
+    var info_testo_orari = listaTestoOrari.split('|');
+    var info_orari_sedi = listaOrariSedi.split('|');
+    var info_recensioni_sedi = listaRecensioniSedi.split('|');
+    var info_telefono_sedi = listaTelefonoSedi.split('|');
+    var info_email_sedi = listaEmailSedi.split('|');
+    var info_mappa_sedi = listaMappaSedi.split('|');
+    var info_sito_sedi = listaSitoSedi.split('|');
+    var colori = widget.data['colori'].split('|');
+    var colore_terziario = int.parse(colori[2]);
+
     return Column(
       children: [
-        for (var index in arrayNomi.keys)
+        for (var index = 0; index < info_nomi_sedi.length; index++)
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
             child: Container(
@@ -42,14 +67,14 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                       children: [
                         CircleAvatar(
                           backgroundImage: NetworkImage(
-                            constants.SEDI_LOGO_ARRAY[index].toString(),
+                            constants.IMG_PATH + widget.data['logo_agenzia'],
                           ),
                           radius: 35,
                         ),
                       ],
                     ),
                     Text(
-                      arrayNomi[index],
+                      info_nomi_sedi[index],
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
@@ -57,94 +82,99 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                       ),
                     ),
                     Text(
-                      constants.SEDI_INDIRIZZI_ARRAY[index],
+                      info_indirizzi_sedi[index],
                       textAlign: TextAlign.center,
                     ),
                     constants.SPACER,
                     Text(
-                      widget.data['nome_agenzia'], // COPIARE QUI
+                      info_testo_orari[index], // COPIARE QUI
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      constants.SEDI_ORARI_ARRAY[index],
+                      info_orari_sedi[index],
                       textAlign: TextAlign.center,
                     ),
                     constants.SPACER,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.phone),
-                          onPressed: () => constants
-                              .openUrl(constants.SEDI_TELEFONO_ARRAY[index]),
-                          style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                                constants.COLORE_TERZIARIO),
-                            foregroundColor:
-                                MaterialStatePropertyAll(Colors.white),
+                        if (info_telefono_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.phone),
+                            onPressed: () => constants.openUrl(
+                                Uri.parse('tel:' + info_telefono_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
                           ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.email),
-                          onPressed: () => constants
-                              .openUrl(constants.SEDI_EMAIL_ARRAY[index]),
-                          style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                                constants.COLORE_TERZIARIO),
-                            foregroundColor:
-                                MaterialStatePropertyAll(Colors.white),
+                        if (info_email_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.email),
+                            onPressed: () => constants.openUrl(
+                                Uri.parse('mailto:' + info_email_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
                           ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.pin_drop),
-                          onPressed: () => constants
-                              .openUrl(constants.SEDI_MAPS_ARRAY[index]),
-                          style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                                constants.COLORE_TERZIARIO),
-                            foregroundColor:
-                                MaterialStatePropertyAll(Colors.white),
+                        if (info_mappa_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.pin_drop),
+                            onPressed: () => constants
+                                .openUrl(Uri.parse(info_mappa_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
                           ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.language),
-                          onPressed: () => constants
-                              .openUrl(constants.SEDI_SITO_ARRAY[index]),
-                          style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                                constants.COLORE_TERZIARIO),
-                            foregroundColor:
-                                MaterialStatePropertyAll(Colors.white),
+                        if (info_sito_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.language),
+                            onPressed: () => constants
+                                .openUrl(Uri.parse(info_sito_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
                           ),
-                        ),
                       ],
                     ),
                     constants.SPACER_MEDIUM,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton.icon(
-                          onPressed: () => constants
-                              .openUrl(constants.SEDI_RECENSIONI_ARRAY[index]),
-                          icon: const Icon(Icons.reviews),
-                          label: const Text(
-                            'Lasciaci una Recensione!',
-                            textAlign: TextAlign.center,
+                        if (info_recensioni_sedi[index] != '')
+                          ElevatedButton.icon(
+                            onPressed: () => constants.openUrl(
+                                Uri.parse(info_recensioni_sedi[index])),
+                            icon: const Icon(Icons.reviews),
+                            label: const Text(
+                              'Lasciaci una Recensione!',
+                              textAlign: TextAlign.center,
+                            ),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5))),
+                            ),
                           ),
-                          style: ButtonStyle(
-                            backgroundColor: const MaterialStatePropertyAll(
-                                constants.COLORE_TERZIARIO),
-                            foregroundColor:
-                                const MaterialStatePropertyAll(Colors.white),
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5))),
-                          ),
-                        ),
                       ],
                     ),
                   ],

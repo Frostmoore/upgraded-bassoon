@@ -25,6 +25,8 @@ class _SinistroState extends State<Sinistro> {
     var token = '&token=' + constants.TOKEN;
     var todo = baseAddr + id + token;
     var url_denuncia = Uri.parse(todo);
+    var colori = widget.data['colori'].split('|');
+    var colore_terziario = Color(int.parse(colori[2]));
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -70,7 +72,17 @@ class _SinistroState extends State<Sinistro> {
                   child: ElevatedButton.icon(
                     onPressed: () => constants.openUrl(url_denuncia),
                     label: const Text(constants.SINISTRO_TESTO_BOTTONE),
-                    style: constants.STILE_BOTTONE,
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(colore_terziario),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                    ),
                     icon: const Icon(Icons.web),
                   ),
                 ),
