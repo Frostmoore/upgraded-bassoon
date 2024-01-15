@@ -10,6 +10,7 @@ import 'package:agenzia_x/firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:developer';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -66,6 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return responseBody;
   }
 
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -86,7 +89,12 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: ChiamataRapida(data: snapshot.data),
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              child: const Center(
+                  child: Image(image: AssetImage('icone/app_icon.png'))));
         }
       },
     );
