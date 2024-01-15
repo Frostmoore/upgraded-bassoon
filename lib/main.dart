@@ -11,6 +11,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:developer';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:permission_handler/permission_handler.dart';
+//import 'package:notification_permissions/notification_permissions.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -19,10 +21,16 @@ Future<void> _messageHandler(RemoteMessage message) async {
 }
 
 void main() async {
+  //WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
 
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
 
@@ -67,8 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return responseBody;
   }
 
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -90,11 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         } else {
           return Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+            child: const Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(constants.COLORE_PRINCIPALE),
               ),
-              child: const Center(
-                  child: Image(image: AssetImage('icone/app_icon.png'))));
+            ),
+          );
         }
       },
     );
