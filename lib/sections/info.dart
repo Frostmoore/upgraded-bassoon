@@ -15,6 +15,10 @@ class _InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var info_titolo = widget.data['info_titolo'];
+    var info_immagine_dirty = widget.data['info_immagine'];
+    var info_immagine =
+        constants.IMG_PATH + info_immagine_dirty.replaceAll('\\', '/');
     /*final PageController _controller = PageController(viewportFraction: 0.8);*/
 
     //return InformazioniAgenzie();
@@ -24,17 +28,17 @@ class _InfoState extends State<Info> {
         SizedBox(
           width: width - 16,
           height: 70,
-          child: const DecoratedBox(
+          child: DecoratedBox(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: constants.IMAGE_INFO,
+                image: NetworkImage(info_immagine),
                 fit: BoxFit.contain,
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(8, 18, 8, 8),
+              padding: const EdgeInsets.fromLTRB(8, 18, 8, 8),
               child: Text(
-                constants.TITOLO_SEZIONE_INFO,
+                info_titolo,
                 textAlign: TextAlign.start,
                 style: constants.H1,
               ),

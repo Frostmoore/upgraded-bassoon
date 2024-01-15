@@ -12,11 +12,17 @@ class NomeSocial extends StatefulWidget {
 class _NomeSocialState extends State<NomeSocial> {
   @override
   Widget build(BuildContext context) {
+    var nome_agenzia = widget.data['nome_agenzia'];
+    var facebook_agenzia = widget.data['facebook_agenzia'];
+    var instagram_agenzia = widget.data['instagram_agenzia'];
+    var linkedin_agenzia = widget.data['linkedin_agenzia'];
+    var google_agenzia = widget.data['google_agenzia'];
+    var sito_agenzia = widget.data['sito_agenzia'];
     return Container(
       child: Column(
         children: [
-          const Text(
-            constants.NOME_AGENZIA,
+          Text(
+            nome_agenzia,
             textAlign: TextAlign.center,
             style: constants.H1,
           ),
@@ -26,23 +32,26 @@ class _NomeSocialState extends State<NomeSocial> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () => constants.openUrl(constants.FACEBOOK_LINK),
+                  onPressed: () =>
+                      constants.openUrl(Uri.parse(facebook_agenzia)),
                   icon: constants.IMAGE_FACEBOOK,
                 ),
                 IconButton(
-                  onPressed: () => constants.openUrl(constants.INSTAGRAM_LINK),
+                  onPressed: () =>
+                      constants.openUrl(Uri.parse(instagram_agenzia)),
                   icon: constants.IMAGE_INSTAGRAM,
                 ),
                 IconButton(
-                  onPressed: () => constants.openUrl(constants.LINKEDIN_LINK),
+                  onPressed: () =>
+                      constants.openUrl(Uri.parse(linkedin_agenzia)),
                   icon: constants.IMAGE_LINKEDIN,
                 ),
                 IconButton(
-                  onPressed: () => constants.openUrl(constants.GOOGLE_LINK),
+                  onPressed: () => constants.openUrl(Uri.parse(google_agenzia)),
                   icon: constants.IMAGE_GOOGLE,
                 ),
                 IconButton(
-                  onPressed: () => constants.openUrl(constants.SITO_LINK),
+                  onPressed: () => constants.openUrl(Uri.parse(sito_agenzia)),
                   icon: constants.IMAGE_WEBSITE,
                 ),
               ],

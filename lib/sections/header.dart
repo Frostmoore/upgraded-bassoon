@@ -13,6 +13,10 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var header_dirty = widget.data['header_agenzia'];
+    var header = header_dirty.replaceAll('\\', '/');
+    var logo_dirty = widget.data['logo_agenzia'];
+    var logo = logo_dirty.replaceAll('\\', '/');
 
     return SizedBox(
       height: 270,
@@ -25,7 +29,8 @@ class _HeaderState extends State<Header> {
               Row(
                 children: [
                   Expanded(
-                    child: constants.HEADER,
+                    child: Image.network(constants.IMG_PATH + header,
+                        height: 200, fit: BoxFit.fitWidth),
                   ),
                 ],
               ),
@@ -34,15 +39,15 @@ class _HeaderState extends State<Header> {
           Positioned(
             top: 130,
             left: (width / 2 - 70),
-            child: const CircleAvatar(
+            child: CircleAvatar(
               radius: 70,
               backgroundColor: Colors.grey,
               child: Material(
                 elevation: 10,
-                borderRadius: BorderRadius.all(Radius.circular(100)),
+                borderRadius: const BorderRadius.all(Radius.circular(100)),
                 child: CircleAvatar(
                   radius: 68,
-                  backgroundImage: constants.PROFILE_PICTURE,
+                  backgroundImage: NetworkImage(constants.IMG_PATH + logo),
                 ),
               ),
             ),

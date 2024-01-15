@@ -68,7 +68,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Future getData() async {
-    var url = Uri.https('jsonplaceholder.typicode.com', '/todos/1');
+    var url = Uri.https('www.seemypage.it', '/hybridandgo/res/api.php',
+        {'id': '3', 'token': 'LHgC8?QbYO'});
     var response = await http.get(url);
     var responseBody = convert.jsonDecode(response.body) as Map;
     print(responseBody); // Remove in production

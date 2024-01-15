@@ -7,6 +7,12 @@ class Notifica extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var notifica_titolo = data['notifica_titolo'];
+    var notifica_testo = data['notifica_testo'];
+    if (data['notifica_link'] != '') {
+      var notifica_link = Uri.parse(data['notifica_link']);
+    }
+
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Container(
@@ -18,22 +24,22 @@ class Notifica extends StatelessWidget {
           color: const Color.fromARGB(25, 255, 0, 0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Text(
-                'ATTENZIONE!',
+                notifica_titolo,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  color: const Color.fromARGB(255, 119, 20, 13),
+                  color: Color.fromARGB(255, 119, 20, 13),
                 ),
               ),
               Text(
-                constants.NOTIFICA_TEXT,
+                notifica_testo,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),

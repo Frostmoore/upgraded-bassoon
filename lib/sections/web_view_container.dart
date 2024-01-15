@@ -11,8 +11,12 @@ class WebViewContainer extends StatefulWidget {
 
 class _WebViewContainerState extends State<WebViewContainer> {
   final controller = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.disabled)
-    ..loadRequest(constants.URL_FORM_DENUNCIA);
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..loadRequest(Uri.parse(
+        'https://www.seemypage.it/hybridandgo/denuncia_sinistro.php?id=' +
+            constants.ID +
+            "&token=" +
+            constants.TOKEN));
 
   @override
   Widget build(BuildContext context) {

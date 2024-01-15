@@ -13,23 +13,28 @@ class _ContattiState extends State<Contatti> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var contatti_immagine_dirty = widget.data['contatti_immagine'];
+    var contatti_immagine =
+        constants.IMG_PATH + contatti_immagine_dirty.replaceAll('\\', '/');
+    var contatti_titolo = widget.data['contatti_titolo'];
+    var contatti_testo = widget.data['contatti_testo'];
 
     return Column(
       children: [
         SizedBox(
           width: width - 16,
           height: 70,
-          child: const DecoratedBox(
+          child: DecoratedBox(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: constants.IMAGE_CONTATTI,
+                image: NetworkImage(contatti_immagine),
                 fit: BoxFit.contain,
               ),
             ),
             child: Padding(
               padding: EdgeInsets.fromLTRB(8, 18, 8, 8),
               child: Text(
-                constants.TITOLO_SEZIONE_CONTATTI,
+                contatti_titolo,
                 textAlign: TextAlign.start,
                 style: constants.H1,
               ),
@@ -41,15 +46,15 @@ class _ContattiState extends State<Contatti> {
           padding: const EdgeInsets.fromLTRB(18.0, 0, 18, 0),
           child: Column(
             children: [
-              const Column(
+              Column(
                 children: [
-                  Text(
+                  const Text(
                     'Contatti:',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    constants.CONTATTI_TESTO,
+                    contatti_testo,
                     textAlign: TextAlign.center,
                   ),
                   constants.SPACER,

@@ -14,6 +14,10 @@ class ChiamataRapida extends StatefulWidget {
 class _ChiamataRapidaState extends State<ChiamataRapida> {
   @override
   Widget build(BuildContext context) {
+    var quick_telefono = widget.data['quick_telefono'];
+    var quick_email = widget.data['quick_email'];
+    var quick_whatsapp = widget.data['quick_whatsapp'];
+
     return SpeedDial(
       icon: Icons.phone,
       backgroundColor: constants.COLORE_PRINCIPALE,
@@ -24,7 +28,7 @@ class _ChiamataRapidaState extends State<ChiamataRapida> {
           backgroundColor: constants.COLORE_PRINCIPALE,
           label: constants.CHIAMATA_RAPIDA_UNO,
           shape: const CircleBorder(eccentricity: 0),
-          onTap: () => constants.openUrl(constants.LINK_CHIAMATA_RAPIDA_UNO),
+          onTap: () => constants.openUrl(Uri.parse('tel:' + quick_telefono)),
         ),
         SpeedDialChild(
           child: Padding(
@@ -38,7 +42,7 @@ class _ChiamataRapidaState extends State<ChiamataRapida> {
           backgroundColor: constants.COLORE_PRINCIPALE,
           label: constants.CHIAMATA_RAPIDA_DUE,
           shape: const CircleBorder(eccentricity: 0),
-          onTap: () => constants.openUrl(constants.LINK_CHIAMATA_RAPIDA_DUE),
+          onTap: () => constants.openUrl(Uri.parse(quick_whatsapp)),
         ),
         SpeedDialChild(
           child: const Icon(Icons.email),
@@ -46,7 +50,7 @@ class _ChiamataRapidaState extends State<ChiamataRapida> {
           backgroundColor: constants.COLORE_PRINCIPALE,
           label: constants.CHIAMATA_RAPIDA_TRE,
           shape: const CircleBorder(eccentricity: 0),
-          onTap: () => constants.openUrl(constants.LINK_CHIAMATA_RAPIDA_TRE),
+          onTap: () => constants.openUrl(Uri.parse('mailto:' + quick_email)),
         ),
       ],
     );

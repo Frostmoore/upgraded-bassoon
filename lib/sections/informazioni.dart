@@ -62,7 +62,7 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                     ),
                     constants.SPACER,
                     Text(
-                      widget.data['title'], // COPIARE QUI
+                      widget.data['nome_agenzia'], // COPIARE QUI
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
