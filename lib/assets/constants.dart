@@ -26,6 +26,7 @@ const Color BIANCO = Color(0xffffffff);
 const Color TRASPARENTE = Color(0x00ffffff);
 const String ID = '5';
 const String TOKEN = '2ycACiLdsh';
+const String IMG_PATH = 'https://www.seemypage.it/hybridandgo/res/';
 
 //
 // STILI
@@ -48,7 +49,6 @@ const Widget SPACER_MEDIUM = SizedBox(height: 10);
 final Image HEADER = Image.network('https://picsum.photos/1200/600',
     height: 200, fit: BoxFit.fitWidth);
 const NetworkImage PROFILE_PICTURE = NetworkImage('https://picsum.photos/200');
-const String IMG_PATH = 'https://www.seemypage.it/hybridandgo/res/';
 
 //
 // NOME SOCIAL
