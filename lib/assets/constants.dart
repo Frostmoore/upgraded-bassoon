@@ -27,6 +27,7 @@ const Color TRASPARENTE = Color(0x00ffffff);
 const String ID = '5';
 const String TOKEN = '2ycACiLdsh';
 const String IMG_PATH = 'https://www.seemypage.it/hybridandgo/res/';
+const String BASE_ADDR = 'https://www.seemypage.it/hybridandgo/res/';
 
 //
 // STILI

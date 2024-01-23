@@ -2,30 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 import 'package:accordion/accordion.dart';
 
-class Sinistro extends StatefulWidget {
+class Preventivo extends StatefulWidget {
   final data;
-  const Sinistro({super.key, required this.data});
+  const Preventivo({super.key, required this.data});
 
   @override
-  State<Sinistro> createState() => _SinistroState();
+  State<Preventivo> createState() => _PreventivoState();
 }
 
-class _SinistroState extends State<Sinistro> {
+class _PreventivoState extends State<Preventivo> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var denuncia_immagine_dirty = widget.data['denuncia_immagine'];
-    var denuncia_immagine =
-        constants.IMG_PATH + denuncia_immagine_dirty.replaceAll('\\', '/');
-    var denuncia_titolo = widget.data['denuncia_titolo'];
-    var denuncia_testo_grassetto = widget.data['denuncia_testo_grassetto'];
+    var preventivo_immagine_dirty = widget.data['preventivo_immagine'];
+    var preventivo_immagine =
+        constants.IMG_PATH + preventivo_immagine_dirty.replaceAll('\\', '/');
+    var preventivo_titolo = widget.data['preventivo_titolo'];
+    var preventivo_testo_grassetto = widget.data['preventivo_testo_grassetto'];
     //var denuncia_testo = widget.data['denuncia_testo'];
-    var baseAddr =
-        'https://www.seemypage.it/hybridandgo/denuncia_sinistro.php?id=';
+    var baseAddr = 'https://www.seemypage.it/hybridandgo/preventivo.php?id=';
     var id = constants.ID;
     var token = '&token=' + constants.TOKEN;
     var todo = baseAddr + id + token;
-    var url_denuncia = Uri.parse(todo);
+    var url_preventivo = Uri.parse(todo);
     var colori = widget.data['colori'].split('|');
     var colore_terziario = Color(int.parse(colori[2]));
 
@@ -49,14 +48,14 @@ class _SinistroState extends State<Sinistro> {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(denuncia_immagine),
+                  image: NetworkImage(preventivo_immagine),
                   fit: BoxFit.contain,
                 ),
               ),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(8, 18, 8, 8),
                 child: Text(
-                  denuncia_titolo,
+                  preventivo_titolo,
                   style: constants.H1,
                 ),
               ),
@@ -69,20 +68,20 @@ class _SinistroState extends State<Sinistro> {
                 child: Column(
                   children: [
                     Text(
-                      denuncia_testo_grassetto,
+                      preventivo_testo_grassetto,
                       textAlign: TextAlign.center,
                       style: constants.EVIDENZA,
                     ),
                     // constants.SPACER,
                     // Text(
-                    //   denuncia_testo,
+                    //   preventivo_testo,
                     //   textAlign: TextAlign.center,
                     // ),
                     // constants.SPACER,
                     SizedBox(
                       width: width,
                       child: ElevatedButton.icon(
-                        onPressed: () => constants.openUrl(url_denuncia),
+                        onPressed: () => constants.openUrl(url_preventivo),
                         label: const Text(constants.SINISTRO_TESTO_BOTTONE),
                         style: ButtonStyle(
                           shape:
