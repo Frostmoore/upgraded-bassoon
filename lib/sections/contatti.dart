@@ -74,8 +74,8 @@ class _ContattiState extends State<Contatti> {
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: () =>
-                            constants.openUrl(Uri.parse(numeriUtiliLinks[0])),
+                        onPressed: () => constants
+                            .openUrl(Uri.parse('tel:' + numeriUtiliLinks[0])),
                         icon: const Icon(Icons.monitor_heart),
                         label: Text(numeriUtiliLabels[0]),
                         style: ButtonStyle(
