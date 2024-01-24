@@ -65,15 +65,13 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                     padding: const EdgeInsets.all(15),
                     child: Column(
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                constants.IMG_PATH +
-                                    widget.data['logo_agenzia'],
-                              ),
-                              radius: 35,
+                            Icon(
+                              Icons.business_sharp,
+                              size: 80,
+                              color: Colors.blue,
                             ),
                           ],
                         ),
