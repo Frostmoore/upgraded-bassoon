@@ -30,18 +30,21 @@ class _InfoState extends State<Info> {
         if (widget.data['notifica_testo'] != '') Notifica(data: widget.data),
         Accordion(
           headerBorderWidth: 1,
-          headerBorderColor: Colors.grey,
-          headerBorderColorOpened: Colors.grey,
+          headerBorderColor: Colors.transparent,
+          headerBorderColorOpened: Colors.transparent,
           headerBackgroundColor: Colors.transparent,
           headerBackgroundColorOpened: Colors.transparent,
-          contentBorderColor: Colors.grey,
+          contentBorderColor: Colors.transparent,
           contentBackgroundColor: Colors.transparent,
           contentHorizontalPadding: 0,
           disableScrolling: true,
           headerPadding: const EdgeInsets.all(0),
           children: [
             AccordionSection(
-              rightIcon: Icon(Icons.arrow_drop_down_rounded),
+              rightIcon: const Icon(
+                Icons.arrow_drop_down_rounded,
+                size: 45,
+              ),
               header: SizedBox(
                 width: width - 16,
                 height: 70,

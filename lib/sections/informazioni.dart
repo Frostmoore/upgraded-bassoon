@@ -39,160 +39,149 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
     var colori = widget.data['colori'].split('|');
     var colore_terziario = int.parse(colori[2]);
 
-    return SizedBox(
-      height: 450,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            for (var index = 0; index < info_nomi_sedi.length; index++)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black38),
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
+    return Column(
+      children: [
+        for (var index = 0; index < info_nomi_sedi.length; index++)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.black38),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.business_sharp,
-                              size: 80,
-                              color: Colors.blue,
-                            ),
-                          ],
-                        ),
-                        Text(
-                          info_nomi_sedi[index],
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        Text(
-                          info_indirizzi_sedi[index],
-                          textAlign: TextAlign.center,
-                        ),
-                        constants.SPACER,
-                        Text(
-                          info_testo_orari[index], // COPIARE QUI
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          info_orari_sedi[index],
-                          textAlign: TextAlign.center,
-                        ),
-                        constants.SPACER,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (info_telefono_sedi[index] != '')
-                              IconButton(
-                                icon: const Icon(Icons.phone),
-                                onPressed: () => constants.openUrl(Uri.parse(
-                                    'tel:' + info_telefono_sedi[index])),
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      Color(colore_terziario)),
-                                  foregroundColor:
-                                      const MaterialStatePropertyAll(
-                                          Colors.white),
-                                ),
-                              ),
-                            if (info_email_sedi[index] != '')
-                              IconButton(
-                                icon: const Icon(Icons.email),
-                                onPressed: () => constants.openUrl(Uri.parse(
-                                    'mailto:' + info_email_sedi[index])),
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      Color(colore_terziario)),
-                                  foregroundColor:
-                                      const MaterialStatePropertyAll(
-                                          Colors.white),
-                                ),
-                              ),
-                            if (info_mappa_sedi[index] != '')
-                              IconButton(
-                                icon: const Icon(Icons.pin_drop),
-                                onPressed: () => constants
-                                    .openUrl(Uri.parse(info_mappa_sedi[index])),
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      Color(colore_terziario)),
-                                  foregroundColor:
-                                      const MaterialStatePropertyAll(
-                                          Colors.white),
-                                ),
-                              ),
-                            if (info_sito_sedi[index] != '')
-                              IconButton(
-                                icon: const Icon(Icons.language),
-                                onPressed: () => constants
-                                    .openUrl(Uri.parse(info_sito_sedi[index])),
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      Color(colore_terziario)),
-                                  foregroundColor:
-                                      const MaterialStatePropertyAll(
-                                          Colors.white),
-                                ),
-                              ),
-                          ],
-                        ),
-                        constants.SPACER_MEDIUM,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (info_recensioni_sedi[index] != '')
-                              ElevatedButton.icon(
-                                onPressed: () => constants.openUrl(
-                                    Uri.parse(info_recensioni_sedi[index])),
-                                icon: const Icon(Icons.reviews),
-                                label: const Text(
-                                  'Lasciaci una Recensione!',
-                                  textAlign: TextAlign.center,
-                                ),
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      Color(colore_terziario)),
-                                  foregroundColor:
-                                      const MaterialStatePropertyAll(
-                                          Colors.white),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5))),
-                                ),
-                              ),
-                          ],
+                        Icon(
+                          Icons.business_sharp,
+                          size: 80,
+                          color: Colors.blue,
                         ),
                       ],
                     ),
-                  ),
+                    Text(
+                      info_nomi_sedi[index],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                    Text(
+                      info_indirizzi_sedi[index],
+                      textAlign: TextAlign.center,
+                    ),
+                    constants.SPACER,
+                    Text(
+                      info_testo_orari[index], // COPIARE QUI
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      info_orari_sedi[index],
+                      textAlign: TextAlign.center,
+                    ),
+                    constants.SPACER,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (info_telefono_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.phone),
+                            onPressed: () => constants.openUrl(
+                                Uri.parse('tel:' + info_telefono_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+                          ),
+                        if (info_email_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.email),
+                            onPressed: () => constants.openUrl(
+                                Uri.parse('mailto:' + info_email_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+                          ),
+                        if (info_mappa_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.pin_drop),
+                            onPressed: () => constants
+                                .openUrl(Uri.parse(info_mappa_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+                          ),
+                        if (info_sito_sedi[index] != '')
+                          IconButton(
+                            icon: const Icon(Icons.language),
+                            onPressed: () => constants
+                                .openUrl(Uri.parse(info_sito_sedi[index])),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                            ),
+                          ),
+                      ],
+                    ),
+                    constants.SPACER_MEDIUM,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (info_recensioni_sedi[index] != '')
+                          ElevatedButton.icon(
+                            onPressed: () => constants.openUrl(
+                                Uri.parse(info_recensioni_sedi[index])),
+                            icon: const Icon(Icons.reviews),
+                            label: const Text(
+                              'Lasciaci una Recensione!',
+                              textAlign: TextAlign.center,
+                            ),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color(colore_terziario)),
+                              foregroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5))),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
-              )
-          ],
-        ),
-      ),
+              ),
+            ),
+          )
+      ],
     );
 
     //arrayNomi[indice]

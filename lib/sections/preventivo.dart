@@ -30,18 +30,21 @@ class _PreventivoState extends State<Preventivo> {
 
     return Accordion(
       headerBorderWidth: 1,
-      headerBorderColor: Colors.grey,
-      headerBorderColorOpened: Colors.grey,
+      headerBorderColor: Colors.transparent,
+      headerBorderColorOpened: Colors.transparent,
       headerBackgroundColor: Colors.transparent,
       headerBackgroundColorOpened: Colors.transparent,
-      contentBorderColor: Colors.grey,
+      contentBorderColor: Colors.transparent,
       contentBackgroundColor: Colors.transparent,
       contentHorizontalPadding: 8,
       disableScrolling: true,
       headerPadding: const EdgeInsets.all(0),
       children: [
         AccordionSection(
-          rightIcon: Icon(Icons.arrow_drop_down_rounded),
+          rightIcon: const Icon(
+            Icons.arrow_drop_down_rounded,
+            size: 45,
+          ),
           header: SizedBox(
             width: width - 16,
             height: 70,
@@ -53,7 +56,7 @@ class _PreventivoState extends State<Preventivo> {
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.fromLTRB(8, 18, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                 child: Text(
                   preventivo_titolo,
                   style: constants.H1,

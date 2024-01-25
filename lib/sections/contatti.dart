@@ -21,25 +21,32 @@ class _ContattiState extends State<Contatti> {
     //var contatti_testo = widget.data['contatti_testo'];
     var numeriUtiliLabels = widget.data['numeri_utili_labels'].split('|');
     var numeriUtiliColori = widget.data['numeri_utili_colori'].split('|');
-    var numeriUtiliLinks = widget.data['numeri_utili_link'].split('|');
+    // Numeri Utili
+    var numeriUtiliSalute = widget.data['numeri_utili_salute'].split('|');
+    var numeriUtiliAssistenza =
+        widget.data['numeri_utili_assistenza'].split('|');
+    var numeriUtiliNoleggio = widget.data['numeri_utili_noleggio'].split('|');
 
     return Accordion(
       headerBorderWidth: 1,
-      headerBorderColor: Colors.grey,
-      headerBorderColorOpened: Colors.grey,
+      headerBorderColor: Colors.transparent,
+      headerBorderColorOpened: Colors.transparent,
       headerBackgroundColor: Colors.transparent,
       headerBackgroundColorOpened: Colors.transparent,
-      contentBorderColor: Colors.grey,
+      contentBorderColor: Colors.transparent,
       contentBackgroundColor: Colors.transparent,
       contentHorizontalPadding: 0,
       disableScrolling: true,
       headerPadding: const EdgeInsets.all(0),
       children: [
         AccordionSection(
-          rightIcon: Icon(Icons.arrow_drop_down_rounded),
+          rightIcon: const Icon(
+            Icons.arrow_drop_down_rounded,
+            size: 45,
+          ),
           header: SizedBox(
-            width: width - 16,
             height: 70,
+            width: width - 16,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -48,7 +55,7 @@ class _ContattiState extends State<Contatti> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(8, 18, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                 child: Text(
                   contatti_titolo,
                   textAlign: TextAlign.start,
@@ -57,135 +64,304 @@ class _ContattiState extends State<Contatti> {
               ),
             ),
           ),
-          content: SizedBox(
-            height: 250,
-            child: Column(
-              children: [
-                constants.SPACER,
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(18.0, 0, 18, 0),
-                  child: Column(
-                    children: [
-                      /*Column(
-                      children: [
-                        const Text(
-                          'Contatti:',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          contatti_testo,
-                          textAlign: TextAlign.center,
-                        ),
-                        constants.SPACER,
-                        const Text(
-                          'Numeri Utili:',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),*/
-                      if (numeriUtiliLinks[0] != '')
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: ElevatedButton.icon(
-                                onPressed: () => constants.openUrl(
-                                    Uri.parse('tel://' + numeriUtiliLinks[0])),
-                                icon: const Icon(Icons.monitor_heart),
-                                label: Text(numeriUtiliLabels[0]),
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                  ),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                    Color(
-                                      int.parse(numeriUtiliColori[0]),
-                                    ),
-                                  ),
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
-                                ),
-                              ),
+          content: Column(
+            children: [
+              //constants.SPACER,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8.0, 0, 8, 0),
+                child: Column(
+                  children: [
+                    if (numeriUtiliLabels[0] != '')
+                      Accordion(
+                        headerBorderWidth: 1,
+                        headerBorderColor: Colors.transparent,
+                        headerBorderColorOpened: Colors.transparent,
+                        headerBackgroundColor: Colors.transparent,
+                        headerBackgroundColorOpened: Colors.transparent,
+                        contentBorderColor: Colors.transparent,
+                        contentBackgroundColor: Colors.transparent,
+                        contentHorizontalPadding: 0,
+                        disableScrolling: true,
+                        headerPadding: const EdgeInsets.all(0),
+                        children: [
+                          AccordionSection(
+                            rightIcon: const Icon(
+                              Icons.arrow_drop_down_rounded,
+                              size: 45,
                             ),
-                          ],
-                        ),
-                      const SizedBox(height: 25),
-                      if (numeriUtiliLinks[1] != '')
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            //const SizedBox(width: 30),
-                            Expanded(
-                              child: ElevatedButton.icon(
-                                onPressed: () => constants.openUrl(
-                                    Uri.parse('tel://' + numeriUtiliLinks[1])),
-                                icon: const Icon(Icons.taxi_alert),
-                                label: Text(numeriUtiliLabels[1]),
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5),
+                            header: Row(
+                              children: [
+                                Expanded(
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: Color(
+                                          int.parse(numeriUtiliColori[0])),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5)),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0, vertical: 8),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.monitor_heart,
+                                            color: Colors.white,
+                                          ),
+                                          Text(
+                                            numeriUtiliLabels[0],
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                    Color(
-                                      int.parse(numeriUtiliColori[1]),
-                                    ),
-                                  ),
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
-                      const SizedBox(height: 25),
-                      if (numeriUtiliLinks[2] != '')
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: ElevatedButton.icon(
-                                onPressed: () => constants.openUrl(
-                                    Uri.parse('tel://' + numeriUtiliLinks[2])),
-                                icon: const Icon(Icons.directions_car),
-                                label: Text(numeriUtiliLabels[2]),
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5),
+                            content: Column(
+                              children: [
+                                for (var i = 0;
+                                    i < numeriUtiliSalute.length;
+                                    i++)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton.icon(
+                                      onPressed: () => constants.openUrl(
+                                        Uri.parse('tel:' +
+                                            numeriUtiliSalute[i].split('.')[1]),
+                                      ),
+                                      icon: const Icon(
+                                        Icons.phone,
+                                      ),
+                                      label: Text(
+                                        numeriUtiliSalute[i].split('.')[0],
+                                      ),
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          Color(
+                                            int.parse(numeriUtiliColori[0]),
+                                          ),
+                                        ),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.white),
+                                      ),
                                     ),
                                   ),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                    Color(
-                                      int.parse(numeriUtiliColori[2]),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    if (numeriUtiliLabels[1] != '')
+                      Accordion(
+                        headerBorderWidth: 1,
+                        headerBorderColor: Colors.transparent,
+                        headerBorderColorOpened: Colors.transparent,
+                        headerBackgroundColor: Colors.transparent,
+                        headerBackgroundColorOpened: Colors.transparent,
+                        contentBorderColor: Colors.transparent,
+                        contentBackgroundColor: Colors.transparent,
+                        contentHorizontalPadding: 0,
+                        disableScrolling: true,
+                        headerPadding: const EdgeInsets.all(0),
+                        children: [
+                          AccordionSection(
+                            rightIcon: const Icon(
+                              Icons.arrow_drop_down_rounded,
+                              size: 45,
+                            ),
+                            header: Row(
+                              children: [
+                                Expanded(
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: Color(
+                                          int.parse(numeriUtiliColori[1])),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5)),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0, vertical: 8),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.car_repair,
+                                            color: Colors.white,
+                                          ),
+                                          Text(
+                                            numeriUtiliLabels[1],
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
-                    ],
-                  ),
+                            content: Column(
+                              children: [
+                                for (var k = 0;
+                                    k < numeriUtiliAssistenza.length;
+                                    k++)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton.icon(
+                                      onPressed: () => constants.openUrl(
+                                        Uri.parse('tel:' +
+                                            numeriUtiliAssistenza[k]
+                                                .split('.')[1]),
+                                      ),
+                                      icon: const Icon(
+                                        Icons.phone,
+                                      ),
+                                      label: Text(
+                                        numeriUtiliAssistenza[k].split('.')[0],
+                                      ),
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          Color(
+                                            int.parse(numeriUtiliColori[1]),
+                                          ),
+                                        ),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    if (numeriUtiliLabels[2] != '')
+                      Accordion(
+                        headerBorderWidth: 1,
+                        headerBorderColor: Colors.transparent,
+                        headerBorderColorOpened: Colors.transparent,
+                        headerBackgroundColor: Colors.transparent,
+                        headerBackgroundColorOpened: Colors.transparent,
+                        contentBorderColor: Colors.transparent,
+                        contentBackgroundColor: Colors.transparent,
+                        contentHorizontalPadding: 0,
+                        disableScrolling: true,
+                        headerPadding: const EdgeInsets.all(0),
+                        children: [
+                          AccordionSection(
+                            rightIcon: const Icon(
+                              Icons.arrow_drop_down_rounded,
+                              size: 45,
+                            ),
+                            header: Row(
+                              children: [
+                                Expanded(
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: Color(
+                                          int.parse(numeriUtiliColori[2])),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5)),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0, vertical: 8),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.car_rental,
+                                            color: Colors.white,
+                                          ),
+                                          Text(
+                                            numeriUtiliLabels[2],
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            content: Column(
+                              children: [
+                                for (var l = 0;
+                                    l < numeriUtiliNoleggio.length;
+                                    l++)
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton.icon(
+                                      onPressed: () => constants.openUrl(
+                                        Uri.parse('tel:' +
+                                            numeriUtiliNoleggio[l]
+                                                .split('.')[1]),
+                                      ),
+                                      icon: const Icon(
+                                        Icons.phone,
+                                      ),
+                                      label: Text(
+                                        numeriUtiliNoleggio[l].split('.')[0],
+                                      ),
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          Color(
+                                            int.parse(numeriUtiliColori[2]),
+                                          ),
+                                        ),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],

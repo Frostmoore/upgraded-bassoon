@@ -1,3 +1,4 @@
+import 'package:agenzia_x/sections/preventivo.dart';
 import 'package:flutter/material.dart';
 //import 'package:agenzia_x/sections/cai.dart';
 import 'package:agenzia_x/sections/contatti.dart';
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
           Contatti(data: widget.data),
           //constants.SPACER,
           Sinistro(data: widget.data),
+          Preventivo(data: widget.data),
           constants.SPACER,
           constants.SPACER,
           constants.SPACER,

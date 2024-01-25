@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
         {'id': constants.ID, 'token': constants.TOKEN});
     var response = await http.get(url);
     var responseBody = convert.jsonDecode(response.body) as Map;
-    //print(responseBody); // Remove in production
+    print(responseBody); // Remove in production
     return responseBody;
   }
 

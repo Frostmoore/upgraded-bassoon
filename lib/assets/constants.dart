@@ -24,8 +24,8 @@ const Color COLORE_SECONDARIO = Color(0xff233b66);
 const Color COLORE_TERZIARIO = Color(0xff233b66);
 const Color BIANCO = Color(0xffffffff);
 const Color TRASPARENTE = Color(0x00ffffff);
-const String ID = '5';
-const String TOKEN = '2ycACiLdsh';
+const String ID = '4';
+const String TOKEN = '8aUEpeag6l';
 const String IMG_PATH = 'https://www.seemypage.it/hybridandgo/res/';
 const String BASE_ADDR = 'https://www.seemypage.it/hybridandgo/res/';
 
