@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+// import 'package:http/http.dart' as http;
+// import 'dart:convert' as convert;
 
 //
 // PRINCIPALI
@@ -17,8 +17,8 @@ const String ID = '!ID_APP';
 const String TOKEN = '!TOKEN';
 const String PATH = '!PATH';
 const String ENDPOINT = '/res/api.php';
-const String IMG_PATH = PATH + '/res/';
-const String BASE_ADDR = PATH + '/res/';
+const String IMG_PATH = 'https://' + PATH + '/res/';
+const String BASE_ADDR = 'https://' + PATH + '/res/';
 
 //
 // STILI
