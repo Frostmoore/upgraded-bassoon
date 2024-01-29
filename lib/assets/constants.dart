@@ -7,16 +7,18 @@ import 'dart:convert' as convert;
 //
 // PRINCIPALI
 //
-const String TITLE = 'La Tua Agenzia Digitale';
+const String TITLE = '!NOME_APP';
 const Color COLORE_PRINCIPALE = Color(0xff008080);
 const Color COLORE_SECONDARIO = Color(0xff233b66);
 const Color COLORE_TERZIARIO = Color(0xff233b66);
 const Color BIANCO = Color(0xffffffff);
 const Color TRASPARENTE = Color(0x00ffffff);
-const String ID = '4';
-const String TOKEN = '8aUEpeag6l';
-const String IMG_PATH = 'https://www.seemypage.it/hybridandgo/res/';
-const String BASE_ADDR = 'https://www.seemypage.it/hybridandgo/res/';
+const String ID = '!ID_APP';
+const String TOKEN = '!TOKEN';
+const String PATH = '!PATH';
+const String ENDPOINT = '/res/api.php';
+const String IMG_PATH = PATH + '/res/';
+const String BASE_ADDR = PATH + '/res/';
 
 //
 // STILI

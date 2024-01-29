@@ -77,7 +77,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Future getData() async {
-    var url = Uri.https('www.seemypage.it', '/hybridandgo/res/api.php',
+    var url = Uri.https(constants.PATH, constants.ENDPOINT,
         {'id': constants.ID, 'token': constants.TOKEN});
     var response = await http.get(url);
     var responseBody = convert.jsonDecode(response.body) as Map;
@@ -94,10 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-              title: Row(
+              title: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(snapshot.data['nome_app']),
+                  Text(constants.TITLE),
                 ],
               ),
             ),

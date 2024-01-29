@@ -20,7 +20,7 @@ class _PreventivoState extends State<Preventivo> {
     var preventivo_titolo = widget.data['preventivo_titolo'];
     var preventivo_testo_grassetto = widget.data['preventivo_testo_grassetto'];
     //var denuncia_testo = widget.data['denuncia_testo'];
-    var baseAddr = 'https://www.seemypage.it/hybridandgo/preventivo.php?id=';
+    var baseAddr = constants.PATH + '/preventivo.php?id=';
     var id = constants.ID;
     var token = '&token=' + constants.TOKEN;
     var todo = baseAddr + id + token;
