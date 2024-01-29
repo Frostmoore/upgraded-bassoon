@@ -85,7 +85,7 @@ class _PreventivoState extends State<Preventivo> {
                       width: width,
                       child: ElevatedButton.icon(
                         onPressed: () => constants.openUrl(url_preventivo),
-                        label: const Text(constants.SINISTRO_TESTO_BOTTONE),
+                        label: const Text('Vai al Modulo'),
                         style: ButtonStyle(
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(

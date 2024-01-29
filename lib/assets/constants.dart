@@ -4,17 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
-Future getData() async {
-  var url = Uri.https('jsonplaceholder.typicode.com', '/todos/1');
-  var response = await http.get(url);
-  if (response.statusCode == 200) {
-    var jsonResponse =
-        convert.jsonDecode(response.body) as Map<String, dynamic>;
-    //print(jsonResponse);
-    return jsonResponse;
-  }
-}
-
 //
 // PRINCIPALI
 //
@@ -34,7 +23,7 @@ const String BASE_ADDR = 'https://www.seemypage.it/hybridandgo/res/';
 //
 const TextStyle EVIDENZA = TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
 const TextStyle BOLD = TextStyle(fontWeight: FontWeight.bold);
-const TextStyle H1 = TextStyle(fontWeight: FontWeight.bold, fontSize: 25);
+const TextStyle H1 = TextStyle(fontWeight: FontWeight.bold, fontSize: 22);
 final ButtonStyle STILE_BOTTONE = ButtonStyle(
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),

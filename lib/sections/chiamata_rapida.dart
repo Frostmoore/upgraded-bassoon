@@ -22,7 +22,7 @@ class _ChiamataRapidaState extends State<ChiamataRapida> {
 
     return SpeedDial(
       icon: Icons.phone,
-      backgroundColor: constants.COLORE_PRINCIPALE,
+      backgroundColor: Color(colore_principale),
       children: [
         SpeedDialChild(
           child: const Icon(Icons.phone_android_outlined),

@@ -37,6 +37,7 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
     var info_mappa_sedi = listaMappaSedi.split('|');
     var info_sito_sedi = listaSitoSedi.split('|');
     var colori = widget.data['colori'].split('|');
+    var colore_secondario = int.parse(colori[1]);
     var colore_terziario = int.parse(colori[2]);
 
     return Column(
@@ -81,7 +82,7 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                       ),
                     ),
                     Text(
-                      info_indirizzi_sedi[index],
+                      info_indirizzi_sedi[index].replaceAll('\\n', '\n'),
                       textAlign: TextAlign.center,
                     ),
                     constants.SPACER,
@@ -93,7 +94,7 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                       ),
                     ),
                     Text(
-                      info_orari_sedi[index],
+                      info_orari_sedi[index].replaceAll('\\n', '\n'),
                       textAlign: TextAlign.center,
                     ),
                     constants.SPACER,
@@ -127,8 +128,8 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                         if (info_mappa_sedi[index] != '')
                           IconButton(
                             icon: const Icon(Icons.pin_drop),
-                            onPressed: () => constants
-                                .openUrl(Uri.parse(info_mappa_sedi[index])),
+                            onPressed: () => constants.openUrl(
+                                Uri.parse('https://' + info_mappa_sedi[index])),
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
                                   Color(colore_terziario)),
@@ -139,8 +140,8 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                         if (info_sito_sedi[index] != '')
                           IconButton(
                             icon: const Icon(Icons.language),
-                            onPressed: () => constants
-                                .openUrl(Uri.parse(info_sito_sedi[index])),
+                            onPressed: () => constants.openUrl(
+                                Uri.parse('https://' + info_sito_sedi[index])),
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
                                   Color(colore_terziario)),
@@ -156,8 +157,8 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                       children: [
                         if (info_recensioni_sedi[index] != '')
                           ElevatedButton.icon(
-                            onPressed: () => constants.openUrl(
-                                Uri.parse(info_recensioni_sedi[index])),
+                            onPressed: () => constants.openUrl(Uri.parse(
+                                'https://' + info_recensioni_sedi[index])),
                             icon: const Icon(Icons.reviews),
                             label: const Text(
                               'Lasciaci una Recensione!',
@@ -165,7 +166,7 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                             ),
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
-                                  Color(colore_terziario)),
+                                  Color(colore_secondario)),
                               foregroundColor:
                                   const MaterialStatePropertyAll(Colors.white),
                               shape: MaterialStateProperty.all<
@@ -183,133 +184,5 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
           )
       ],
     );
-
-    //arrayNomi[indice]
-
-    /*return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black38),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-        ),
-        child: Material(
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-          elevation: 5,
-          child: InkWell(
-            radius: 100,
-            onTap: () => constants.openUrl(constants.LINK_SEDE_UNO),
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircleAvatar(
-                          backgroundImage: constants.IMMAGINE_SEDE,
-                          radius: 35,
-                        ),
-                        constants.SPACER_MEDIUM,
-                        const Text(
-                          constants.NOME_SEDE_UNO,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Text(
-                          constants.INDIRIZZO_SEDE_UNO,
-                          textAlign: TextAlign.center,
-                        ),
-                        constants.SPACER,
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Orari di Apertura',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Text(
-                          constants.ORARI_SEDE_UNO,
-                          textAlign: TextAlign.center,
-                        ),
-                        constants.SPACER,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              onPressed: () =>
-                                  constants.openUrl(constants.MAPPA_LINK),
-                              icon: const Icon(Icons.pin_drop),
-                              style: const ButtonStyle(
-                                foregroundColor:
-                                    MaterialStatePropertyAll(Colors.white),
-                                backgroundColor: MaterialStatePropertyAll(
-                                    constants.COLORE_SECONDARIO),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () =>
-                                  constants.openUrl(constants.MAPPA_LINK),
-                              icon: const Icon(Icons.phone),
-                              style: const ButtonStyle(
-                                foregroundColor:
-                                    MaterialStatePropertyAll(Colors.white),
-                                backgroundColor: MaterialStatePropertyAll(
-                                    constants.COLORE_SECONDARIO),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () =>
-                                  constants.openUrl(constants.MAPPA_LINK),
-                              icon: const Icon(Icons.email),
-                              style: const ButtonStyle(
-                                foregroundColor:
-                                    MaterialStatePropertyAll(Colors.white),
-                                backgroundColor: MaterialStatePropertyAll(
-                                    constants.COLORE_SECONDARIO),
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () =>
-                                  constants.openUrl(constants.MAPPA_LINK),
-                              icon: const Icon(Icons.language),
-                              style: const ButtonStyle(
-                                foregroundColor:
-                                    MaterialStatePropertyAll(Colors.white),
-                                backgroundColor: MaterialStatePropertyAll(
-                                    constants.COLORE_SECONDARIO),
-                              ),
-                            ),
-                          ],
-                        ),
-                        constants.SPACER,
-                        ElevatedButton.icon(
-                          onPressed: () =>
-                              constants.openUrl(constants.RECENSIONE_SEDE_UNO),
-                          icon: const Icon(Icons.reviews),
-                          label: const Text('Lasciaci una Recensione'),
-                          style: constants.STILE_BOTTONE,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );*/
   }
 }

@@ -29,17 +29,16 @@ void main() async {
   await Permission.notification.isDenied.then((value) {
     if (value) {
       Permission.notification.request();
+      print(Permission.notification.status);
     }
   });
-  var gigi = await Permission.camera.status;
-  print(gigi);
-  if (await Permission.photos.status == PermissionStatus.denied) {
+  //var gigi = await Permission.camera.status;
+  /*if (await Permission.photos.status == PermissionStatus.denied) {
     Permission.photos.request();
   }
-  print(gigi);
   if (await Permission.camera.status == PermissionStatus.denied) {
     Permission.camera.request();
-  }
+  }*/
 
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
 
@@ -81,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         {'id': constants.ID, 'token': constants.TOKEN});
     var response = await http.get(url);
     var responseBody = convert.jsonDecode(response.body) as Map;
-    print(responseBody); // Remove in production
+    //print(responseBody); // Remove in production
     return responseBody;
   }
 
