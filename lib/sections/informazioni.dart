@@ -128,8 +128,8 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                         if (info_mappa_sedi[index] != '')
                           IconButton(
                             icon: const Icon(Icons.pin_drop),
-                            onPressed: () => constants.openUrl(
-                                Uri.parse('https://' + info_mappa_sedi[index])),
+                            onPressed: () => constants
+                                .openUrl(Uri.parse(info_mappa_sedi[index])),
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
                                   Color(colore_terziario)),
@@ -140,8 +140,8 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                         if (info_sito_sedi[index] != '')
                           IconButton(
                             icon: const Icon(Icons.language),
-                            onPressed: () => constants.openUrl(
-                                Uri.parse('https://' + info_sito_sedi[index])),
+                            onPressed: () => constants
+                                .openUrl(Uri.parse(info_sito_sedi[index])),
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
                                   Color(colore_terziario)),
@@ -157,8 +157,8 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                       children: [
                         if (info_recensioni_sedi[index] != '')
                           ElevatedButton.icon(
-                            onPressed: () => constants.openUrl(Uri.parse(
-                                'https://' + info_recensioni_sedi[index])),
+                            onPressed: () => constants.openUrl(
+                                Uri.parse(info_recensioni_sedi[index])),
                             icon: const Icon(Icons.reviews),
                             label: const Text(
                               'Lasciaci una Recensione!',

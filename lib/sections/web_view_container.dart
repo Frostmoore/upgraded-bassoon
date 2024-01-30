@@ -13,7 +13,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
   final controller = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..loadRequest(Uri.parse(
-        'https://www.seemypage.it/hybridandgo/denuncia_sinistro.php?id=' +
+        'https://www.hybridandgogsv.it/denuncia_sinistro.php?id=' +
             constants.ID +
             "&token=" +
             constants.TOKEN));

@@ -13,11 +13,11 @@ class _NomeSocialState extends State<NomeSocial> {
   @override
   Widget build(BuildContext context) {
     var nome_agenzia = widget.data['nome_agenzia'];
-    var facebook_agenzia = 'https://' + widget.data['facebook_agenzia'];
-    var instagram_agenzia = 'https://' + widget.data['instagram_agenzia'];
-    var linkedin_agenzia = 'https://' + widget.data['linkedin_agenzia'];
-    var google_agenzia = 'https://' + widget.data['google_agenzia'];
-    var sito_agenzia = 'https://' + widget.data['sito_agenzia'];
+    var facebook_agenzia = widget.data['facebook_agenzia'];
+    var instagram_agenzia = widget.data['instagram_agenzia'];
+    var linkedin_agenzia = widget.data['linkedin_agenzia'];
+    var google_agenzia = widget.data['google_agenzia'];
+    var sito_agenzia = widget.data['sito_agenzia'];
     return Container(
       child: Column(
         children: [

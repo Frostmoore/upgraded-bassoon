@@ -41,7 +41,7 @@ class _HeaderState extends State<Header> {
             left: (width / 2 - 70),
             child: CircleAvatar(
               radius: 70,
-              backgroundColor: Colors.grey,
+              backgroundColor: Colors.white,
               child: Material(
                 elevation: 10,
                 borderRadius: const BorderRadius.all(Radius.circular(100)),
