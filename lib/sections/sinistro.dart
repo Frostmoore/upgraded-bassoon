@@ -20,7 +20,7 @@ class _SinistroState extends State<Sinistro> {
     var denuncia_titolo = widget.data['denuncia_titolo'];
     var denuncia_testo_grassetto = widget.data['denuncia_testo_grassetto'];
     //var denuncia_testo = widget.data['denuncia_testo'];
-    var baseAddr = constants.PATH + '/denuncia_sinistro.php?id=';
+    var baseAddr = 'https://' + constants.PATH + '/denuncia_sinistro.php?id=';
     var id = constants.ID;
     var token = '&token=' + constants.TOKEN;
     var todo = baseAddr + id + token;
