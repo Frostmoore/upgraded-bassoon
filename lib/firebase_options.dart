@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAqbSvo85Mc3sDgJr-_KaTA6MCFehpAVLk',
-    appId: '1:1040004622026:android:37b7485afd93f134663633',
-    messagingSenderId: '1040004622026',
-    projectId: 'agenziax-628e3',
-    storageBucket: 'agenziax-628e3.appspot.com',
+    apiKey: 'AIzaSyCt0qWgYLZStH37etd5L4F-aKOhrIULXiw',
+    appId: '1:747946527659:android:b71ee4fbe2d9d84dcde0ee',
+    messagingSenderId: '747946527659',
+    projectId: 'assidim01',
+    storageBucket: 'assidim01.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBCh5VTSPlyLtwYtlDfsZHNj7aG-wdaOWI',
-    appId: '1:1040004622026:ios:0f539a53cfdbb83c663633',
-    messagingSenderId: '1040004622026',
-    projectId: 'agenziax-628e3',
-    storageBucket: 'agenziax-628e3.appspot.com',
+    apiKey: 'AIzaSyBhn8YoJtdHmR71bee-Ew0kzvaTskBaljE',
+    appId: '1:747946527659:ios:025e62338a212211cde0ee',
+    messagingSenderId: '747946527659',
+    projectId: 'assidim01',
+    storageBucket: 'assidim01.appspot.com',
     iosBundleId: 'com.example.agenziax',
   );
 }

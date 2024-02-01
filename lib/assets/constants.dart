@@ -13,8 +13,8 @@ const Color COLORE_SECONDARIO = Color(0xff233b66);
 const Color COLORE_TERZIARIO = Color(0xff233b66);
 const Color BIANCO = Color(0xffffffff);
 const Color TRASPARENTE = Color(0x00ffffff);
-const String ID = '!ID_APP';
-const String TOKEN = '!TOKEN';
+const String ID = '!ID_APP'; //!APP_ID
+const String TOKEN = '!TOKEN'; //!TOKEN
 const String PATH = 'www.hybridandgogsv.it';
 const String ENDPOINT = '/res/api.php';
 const String IMG_PATH = 'https://' + PATH + '/res/';
@@ -58,6 +58,8 @@ final SvgPicture IMAGE_PINTEREST =
     SvgPicture.asset('lib/assets/pinterest.svg', width: 50);
 final SvgPicture IMAGE_TWITTER =
     SvgPicture.asset('lib/assets/twitter.svg', width: 50);
+
+final AssetImage IMAGE_BUILDING = AssetImage('lib/assets/agenzia.png');
 final Image IMAGE_WEBSITE = Image.asset('lib/assets/website.png', width: 40);
 
 //

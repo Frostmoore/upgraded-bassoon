@@ -63,13 +63,12 @@ class _InformazioniAgenzieState extends State<InformazioniAgenzie> {
                 padding: const EdgeInsets.all(15),
                 child: Column(
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.business_sharp,
-                          size: 80,
-                          color: Colors.blue,
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Image(image: constants.IMAGE_BUILDING, height: 80),
                         ),
                       ],
                     ),
