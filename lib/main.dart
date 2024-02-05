@@ -9,9 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'dart:developer';
+//import 'dart:developer';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/services.dart';
 //import 'package:notification_permissions/notification_permissions.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+    // Return app
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
