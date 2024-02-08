@@ -31,7 +31,7 @@ void main() async {
   await Permission.notification.isDenied.then((value) {
     if (value) {
       Permission.notification.request();
-      print(Permission.notification.status);
+      //print(Permission.notification.status);
     }
   });
   //var gigi = await Permission.camera.status;

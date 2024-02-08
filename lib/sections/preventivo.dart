@@ -23,7 +23,7 @@ class _PreventivoState extends State<Preventivo> {
     var baseAddr = 'https://' + constants.PATH + '/preventivo.php?id=';
     var id = constants.ID;
     var token = '&token=' + constants.TOKEN;
-    var todo = baseAddr + id + token;
+    var todo = baseAddr + id; // + token;
     var url_preventivo = Uri.parse(todo);
     var colori = widget.data['colori'].split('|');
     var colore_terziario = Color(int.parse(colori[2]));
