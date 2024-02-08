@@ -22,7 +22,7 @@ class _PreventivoState extends State<Preventivo> {
     //var denuncia_testo = widget.data['denuncia_testo'];
     var baseAddr = 'https://' + constants.PATH + '/preventivo.php?id=';
     var id = constants.ID;
-    var token = '&token=' + constants.TOKEN;
+    //var token = '&token=' + constants.TOKEN;
     var todo = baseAddr + id; // + token;
     var url_preventivo = Uri.parse(todo);
     var colori = widget.data['colori'].split('|');

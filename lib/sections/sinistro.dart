@@ -22,7 +22,7 @@ class _SinistroState extends State<Sinistro> {
     //var denuncia_testo = widget.data['denuncia_testo'];
     var baseAddr = 'https://' + constants.PATH + '/denuncia_sinistro.php?id=';
     var id = constants.ID;
-    var token = '&token=' + constants.TOKEN;
+    //var token = '&token=' + constants.TOKEN;
     var todo = baseAddr + id; // + token;
     var url_denuncia = Uri.parse(todo);
     var colori = widget.data['colori'].split('|');
