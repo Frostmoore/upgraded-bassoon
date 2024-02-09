@@ -26,6 +26,7 @@ void main() async {
   //WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: constants.TITLE,
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Permission.notification.isDenied.then((value) {
