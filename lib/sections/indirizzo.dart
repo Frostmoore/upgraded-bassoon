@@ -72,7 +72,6 @@ class _IndirizzoState extends State<Indirizzo> {
 
   @override
   Widget build(BuildContext context) {
-    String titolino = "Indirizzo:";
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
