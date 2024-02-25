@@ -1,3 +1,4 @@
+import 'package:agenzia_x/sections/indirizzo.dart';
 import 'package:agenzia_x/sections/preventivo.dart';
 import 'package:flutter/material.dart';
 //import 'package:agenzia_x/sections/cai.dart';
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           //constants.SPACER,
           Sinistro(data: widget.data),
           Preventivo(data: widget.data),
-          constants.SPACER,
+          Indirizzo(),
           constants.SPACER,
           constants.SPACER,
           /*Cai(),*/

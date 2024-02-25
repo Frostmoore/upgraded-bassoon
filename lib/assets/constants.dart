@@ -210,7 +210,7 @@ const String MESSAGGIO = 'Contenuto';
 
 // CHIAMATE RAPIDE
 const String CHIAMATA_RAPIDA_UNO = 'Chiamata Rapida';
-const String CHIAMATA_RAPIDA_DUE = 'Chiamata Whatsapp';
+const String CHIAMATA_RAPIDA_DUE = 'Whatsapp';
 const String CHIAMATA_RAPIDA_TRE = 'e-mail Rapida';
 final Uri LINK_CHIAMATA_RAPIDA_UNO = Uri.parse('tel:');
 final Uri LINK_CHIAMATA_RAPIDA_DUE = Uri.parse('https://wa.me/');

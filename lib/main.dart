@@ -29,12 +29,26 @@ void main() async {
     name: constants.TITLE,
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Permission.notification.isDenied.then((value) {
+  // await Permission.notification.isDenied.then((value) {
+  //   if (value) {
+  //     Permission.notification.request();
+  //     Permission.location.request();
+  //     //print(Permission.notification.status);
+  //   }
+  // });
+  // print(Permission.location.status);
+  /*await Permission.location.isDenied.then((value) {
     if (value) {
-      Permission.notification.request();
-      //print(Permission.notification.status);
+      Permission.location.request();
+      print(Permission.notification.status);
     }
-  });
+  });*/
+  Map<Permission, PermissionStatus> statuses = await [
+    Permission.location,
+    Permission.notification,
+  ].request();
+  print(statuses[Permission.location]);
+  print(statuses[Permission.notification]);
   //var gigi = await Permission.camera.status;
   /*if (await Permission.photos.status == PermissionStatus.denied) {
     Permission.photos.request();
