@@ -32,7 +32,6 @@ class _HomePageState extends State<HomePage> {
           //constants.SPACER,
           Sinistro(data: widget.data),
           Preventivo(data: widget.data),
-          Indirizzo(),
           constants.SPACER,
           constants.SPACER,
           /*Cai(),*/

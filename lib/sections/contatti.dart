@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 import 'package:accordion/accordion.dart';
+import 'package:agenzia_x/sections/indirizzo.dart';
 
 class Contatti extends StatefulWidget {
   final data;
@@ -358,6 +359,71 @@ class _ContattiState extends State<Contatti> {
                           ),
                         ],
                       ),
+                    Accordion(
+                      headerBorderWidth: 1,
+                      headerBorderColor: Colors.transparent,
+                      headerBorderColorOpened: Colors.transparent,
+                      headerBackgroundColor: Colors.transparent,
+                      headerBackgroundColorOpened: Colors.transparent,
+                      contentBorderColor: Colors.transparent,
+                      contentBackgroundColor: Colors.transparent,
+                      contentHorizontalPadding: 0,
+                      disableScrolling: true,
+                      headerPadding: const EdgeInsets.all(0),
+                      children: [
+                        AccordionSection(
+                          rightIcon: const Icon(
+                            Icons.arrow_drop_down_rounded,
+                            size: 45,
+                          ),
+                          header: Row(
+                            children: [
+                              Expanded(
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Color(int.parse(numeriUtiliColori[2])),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 0, vertical: 8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.push_pin,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          'Dove mi Trovo',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          content: Column(
+                            children: [
+                              for (var l = 0;
+                                  l < numeriUtiliNoleggio.length;
+                                  l++)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Indirizzo(),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
