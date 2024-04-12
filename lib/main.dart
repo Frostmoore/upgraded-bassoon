@@ -44,7 +44,7 @@ void main() async {
     }
   });*/
   Map<Permission, PermissionStatus> statuses = await [
-    Permission.location,
+    Permission.locationWhenInUse,
     Permission.notification,
   ].request();
   print(statuses[Permission.location]);
