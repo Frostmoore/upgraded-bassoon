@@ -31,29 +31,35 @@ class _NomeSocialState extends State<NomeSocial> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                  onPressed: () =>
-                      constants.openUrl(Uri.parse(facebook_agenzia)),
-                  icon: constants.IMAGE_FACEBOOK,
-                ),
-                IconButton(
-                  onPressed: () =>
-                      constants.openUrl(Uri.parse(instagram_agenzia)),
-                  icon: constants.IMAGE_INSTAGRAM,
-                ),
-                IconButton(
-                  onPressed: () =>
-                      constants.openUrl(Uri.parse(linkedin_agenzia)),
-                  icon: constants.IMAGE_LINKEDIN,
-                ),
-                IconButton(
-                  onPressed: () => constants.openUrl(Uri.parse(google_agenzia)),
-                  icon: constants.IMAGE_GOOGLE,
-                ),
-                IconButton(
-                  onPressed: () => constants.openUrl(Uri.parse(sito_agenzia)),
-                  icon: constants.IMAGE_WEBSITE,
-                ),
+                if (facebook_agenzia != '')
+                  IconButton(
+                    onPressed: () =>
+                        constants.openUrl(Uri.parse(facebook_agenzia)),
+                    icon: constants.IMAGE_FACEBOOK,
+                  ),
+                if (instagram_agenzia != '')
+                  IconButton(
+                    onPressed: () =>
+                        constants.openUrl(Uri.parse(instagram_agenzia)),
+                    icon: constants.IMAGE_INSTAGRAM,
+                  ),
+                if (linkedin_agenzia != '')
+                  IconButton(
+                    onPressed: () =>
+                        constants.openUrl(Uri.parse(linkedin_agenzia)),
+                    icon: constants.IMAGE_LINKEDIN,
+                  ),
+                if (google_agenzia != '')
+                  IconButton(
+                    onPressed: () =>
+                        constants.openUrl(Uri.parse(google_agenzia)),
+                    icon: constants.IMAGE_GOOGLE,
+                  ),
+                if (sito_agenzia != '')
+                  IconButton(
+                    onPressed: () => constants.openUrl(Uri.parse(sito_agenzia)),
+                    icon: constants.IMAGE_WEBSITE,
+                  ),
               ],
             ),
           ),
