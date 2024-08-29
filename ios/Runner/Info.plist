@@ -58,8 +58,8 @@
             <string>remote-notification</string>
         </array>
         <key>NSLocationWhenInUseUsageDescription</key>
-        <string>Questa app richiede la tua posizione per poterti fornire l'indirizzo esatto.</string>
+        <string>La tua posizione verrà utilizzata esclusivamente per fini di supporto ai servizi dell’Agenzia. Un esempio di questo supporto può essere la comunicazione dell’indirizzo in cui ti trovi, o la strada in cui si trovava l’autovettura al momento del guasto o dell’incidente. Solo tu sarai in grado di vedere queste informazioni e le stesse non verranno registrate o trasmesse al di fuori del tuo dispositivo.</string>
         <key>NSLocationAlwaysUsageDescription</key>
-        <string>Questa app richiede la tua posizione per poterti fornire l'indirizzo esatto.</string>
+        <string>La tua posizione verrà utilizzata esclusivamente per fini di supporto ai servizi dell’Agenzia. Un esempio di questo supporto può essere la comunicazione dell’indirizzo in cui ti trovi, o la strada in cui si trovava l’autovettura al momento del guasto o dell’incidente. Solo tu sarai in grado di vedere queste informazioni e le stesse non verranno registrate o trasmesse al di fuori del tuo dispositivo.</string>
     </dict>
 </plist>
