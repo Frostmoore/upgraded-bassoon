@@ -24,36 +24,39 @@ class _ChiamataRapidaState extends State<ChiamataRapida> {
       icon: Icons.phone,
       backgroundColor: Color(colore_principale),
       children: [
-        SpeedDialChild(
-          child: const Icon(Icons.phone_android_outlined),
-          foregroundColor: Colors.white,
-          backgroundColor: Color(colore_principale),
-          label: constants.CHIAMATA_RAPIDA_UNO,
-          shape: const CircleBorder(eccentricity: 0),
-          onTap: () => constants.openUrl(Uri.parse('tel:' + quick_telefono)),
-        ),
-        SpeedDialChild(
-          child: Padding(
-            padding: const EdgeInsets.all(9.0),
-            child: SvgPicture.asset(
-              'lib/assets/whatsapp.svg',
-              color: Colors.white,
-            ),
+        if (quick_telefono != '')
+          SpeedDialChild(
+            child: const Icon(Icons.phone_android_outlined),
+            foregroundColor: Colors.white,
+            backgroundColor: Color(colore_principale),
+            label: constants.CHIAMATA_RAPIDA_UNO,
+            shape: const CircleBorder(eccentricity: 0),
+            onTap: () => constants.openUrl(Uri.parse('tel:' + quick_telefono)),
           ),
-          foregroundColor: Colors.white,
-          backgroundColor: Color(colore_principale),
-          label: constants.CHIAMATA_RAPIDA_DUE,
-          shape: const CircleBorder(eccentricity: 0),
-          onTap: () => constants.openUrl(Uri.parse(quick_whatsapp)),
-        ),
-        SpeedDialChild(
-          child: const Icon(Icons.email),
-          foregroundColor: Colors.white,
-          backgroundColor: Color(colore_principale),
-          label: constants.CHIAMATA_RAPIDA_TRE,
-          shape: const CircleBorder(eccentricity: 0),
-          onTap: () => constants.openUrl(Uri.parse('mailto:' + quick_email)),
-        ),
+        if (quick_whatsapp != '')
+          SpeedDialChild(
+            child: Padding(
+              padding: const EdgeInsets.all(9.0),
+              child: SvgPicture.asset(
+                'lib/assets/whatsapp.svg',
+                color: Colors.white,
+              ),
+            ),
+            foregroundColor: Colors.white,
+            backgroundColor: Color(colore_principale),
+            label: constants.CHIAMATA_RAPIDA_DUE,
+            shape: const CircleBorder(eccentricity: 0),
+            onTap: () => constants.openUrl(Uri.parse(quick_whatsapp)),
+          ),
+        if (quick_email != '')
+          SpeedDialChild(
+            child: const Icon(Icons.email),
+            foregroundColor: Colors.white,
+            backgroundColor: Color(colore_principale),
+            label: constants.CHIAMATA_RAPIDA_TRE,
+            shape: const CircleBorder(eccentricity: 0),
+            onTap: () => constants.openUrl(Uri.parse('mailto:' + quick_email)),
+          ),
       ],
     );
   }
