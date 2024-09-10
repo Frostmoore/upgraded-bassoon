@@ -48,21 +48,4 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCt0qWgYLZStH37etd5L4F-aKOhrIULXiw',
-    appId: '1:747946527659:android:b71ee4fbe2d9d84dcde0ee',
-    messagingSenderId: '747946527659',
-    projectId: 'assidim01',
-    storageBucket: 'assidim01.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBhn8YoJtdHmR71bee-Ew0kzvaTskBaljE',
-    appId: '1:747946527659:ios:025e62338a212211cde0ee',
-    messagingSenderId: '747946527659',
-    projectId: 'assidim01',
-    storageBucket: 'assidim01.appspot.com',
-    iosBundleId: 'com.example.agenziax',
-  );
 }
