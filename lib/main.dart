@@ -6,11 +6,11 @@ import 'package:agenzia_x/home.dart';
 import 'package:agenzia_x/sections/web_view_container.dart';
 import 'package:agenzia_x/sections/chiamata_rapida.dart';
 import 'package:flutter/material.dart';
-// import 'package:agenzia_x/firebase_options.dart';
+import 'package:agenzia_x/firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'dart:developer';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/services.dart';
 //import 'package:notification_permissions/notification_permissions.dart';
@@ -95,13 +95,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
   Future getData() async {
     var url = Uri.https(constants.PATH, constants.ENDPOINT,
         {'id': constants.ID, 'token': constants.TOKEN});
+    // print(url);
     var response = await http.get(url);
     var responseBody = convert.jsonDecode(response.body) as Map;
-    //print(responseBody); // Remove in production
+    // print(responseBody); // Remove in production
     return responseBody;
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -122,6 +130,21 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: HomePage(data: snapshot.data),
             floatingActionButton: ChiamataRapida(data: snapshot.data),
+            bottomNavigationBar: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Agenzia',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.account_box),
+                  label: 'Account',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: constants.COLORE_PRINCIPALE,
+              onTap: _onItemTapped,
+            ),
           );
         } else {
           return Container(
