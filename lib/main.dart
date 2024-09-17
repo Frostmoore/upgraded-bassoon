@@ -4,13 +4,14 @@ import 'dart:convert' as convert;
 import 'package:agenzia_x/firebase_options.dart';
 import 'package:agenzia_x/home.dart';
 import 'package:agenzia_x/sections/web_view_container.dart';
+import 'package:agenzia_x/sections/login_form.dart';
 import 'package:agenzia_x/sections/chiamata_rapida.dart';
 import 'package:flutter/material.dart';
-import 'package:agenzia_x/firebase_options.dart';
+// import 'package:agenzia_x/firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'dart:developer';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/services.dart';
 //import 'package:notification_permissions/notification_permissions.dart';
@@ -47,8 +48,8 @@ void main() async {
     Permission.locationWhenInUse,
     Permission.notification,
   ].request();
-  print(statuses[Permission.location]);
-  print(statuses[Permission.notification]);
+  // print(statuses[Permission.location]);
+  // print(statuses[Permission.notification]);
   //var gigi = await Permission.camera.status;
   /*if (await Permission.photos.status == PermissionStatus.denied) {
     Permission.photos.request();
@@ -74,7 +75,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const MyHomePage(title: constants.TITLE),
-        '/webViewContainer': (context) => const WebViewContainer()
+        '/webViewContainer': (context) => const WebViewContainer(),
+        '/login': (context) => const LoginForm()
       },
       title: constants.TITLE,
       theme: ThemeData(
@@ -128,7 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            body: HomePage(data: snapshot.data),
+            body: _selectedIndex == 0
+                ? HomePage(data: snapshot.data)
+                : LoginForm(),
             floatingActionButton: ChiamataRapida(data: snapshot.data),
             bottomNavigationBar: BottomNavigationBar(
               items: const <BottomNavigationBarItem>[
