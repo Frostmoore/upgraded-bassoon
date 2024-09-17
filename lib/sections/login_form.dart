@@ -159,7 +159,7 @@ class _LoginFormState extends State<LoginForm> {
                           );
                         }
                       },
-                      child: const Text("Submit"),
+                      child: const Text("Registrati!"),
                     ),
                   ),
                 ]),
