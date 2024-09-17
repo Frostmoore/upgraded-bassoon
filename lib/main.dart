@@ -75,8 +75,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const MyHomePage(title: constants.TITLE),
-        '/webViewContainer': (context) => const WebViewContainer(),
-        '/login': (context) => const LoginForm()
+        '/webViewContainer': (context) => const WebViewContainer()
       },
       title: constants.TITLE,
       theme: ThemeData(
@@ -132,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: _selectedIndex == 0
                 ? HomePage(data: snapshot.data)
-                : LoginForm(),
+                : LoginForm(data: snapshot.data),
             floatingActionButton: ChiamataRapida(data: snapshot.data),
             bottomNavigationBar: BottomNavigationBar(
               items: const <BottomNavigationBarItem>[

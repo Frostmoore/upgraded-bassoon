@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  final data;
+  const LoginForm({super.key, required this.data});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
