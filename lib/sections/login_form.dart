@@ -27,7 +27,7 @@ class _LoginFormState extends State<LoginForm> {
   var Username;
   var Password;
   var RepeatPassword;
-  var Privacy;
+  bool Privacy = false;
 
   @override
   Widget build(BuildContext context) {
@@ -233,22 +233,6 @@ class _LoginFormState extends State<LoginForm> {
                       errorInvalidText: "Inserisci una Data valida",
                     ),
                     constants.SPACER,
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: false,
-                          onChanged: (value) {
-                            setState(() {
-                              Privacy = value;
-                            });
-                          },
-                        ),
-                        const Flexible(
-                          child: Text(
-                              "Confermo di aver letto e sottoscritto esplicitamente tutte le condizioni della liberatoria privacy"),
-                        ),
-                      ],
-                    ),
                     constants.SPACER_MEDIUM,
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
