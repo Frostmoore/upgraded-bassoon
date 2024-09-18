@@ -16,7 +16,7 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   Future getData() async {
     var url = Uri.https(constants.PATH, constants.ENDPOINT,
         {'id': constants.ID, 'token': constants.TOKEN});
@@ -31,7 +31,7 @@ class _AccountPageState extends State<AccountPage> {
     setState(() {
       _selectedIndex = index;
       if (_selectedIndex == 0) {
-        Navigator.pop(context);
+        Navigator.pushNamed(context, '/');
       }
     });
   }
@@ -47,7 +47,7 @@ class _AccountPageState extends State<AccountPage> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-              title: const Text(constants.TITOLO_FORM_DENUNCIA),
+              title: const Text(" "),
             ),
             body: Container(
               child: SingleChildScrollView(
