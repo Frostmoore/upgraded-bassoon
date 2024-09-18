@@ -242,6 +242,7 @@ class _LoginFormState extends State<LoginForm> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Processing Data')),
                             );
+                            Navigator.pushNamed(context, '/account');
                           }
                         },
                         style: constants.STILE_BOTTONE,

@@ -5,6 +5,7 @@ import 'package:agenzia_x/firebase_options.dart';
 import 'package:agenzia_x/home.dart';
 import 'package:agenzia_x/sections/web_view_container.dart';
 import 'package:agenzia_x/sections/login_form.dart';
+import 'package:agenzia_x/sections/account.dart';
 import 'package:agenzia_x/sections/chiamata_rapida.dart';
 import 'package:flutter/material.dart';
 // import 'package:agenzia_x/firebase_options.dart';
@@ -48,7 +49,7 @@ void main() async {
     Permission.locationWhenInUse,
     Permission.notification,
   ].request();
-  // print(statuses[Permission.location]);
+  print(statuses[Permission.location]);
   // print(statuses[Permission.notification]);
   //var gigi = await Permission.camera.status;
   /*if (await Permission.photos.status == PermissionStatus.denied) {
@@ -75,7 +76,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const MyHomePage(title: constants.TITLE),
-        '/webViewContainer': (context) => const WebViewContainer()
+        '/webViewContainer': (context) => const WebViewContainer(),
+        '/account': (context) => const AccountPage()
       },
       title: constants.TITLE,
       theme: ThemeData(
