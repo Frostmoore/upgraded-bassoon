@@ -12,6 +12,13 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
+  var Nome;
+  var Cognome;
+  var DataDiNascita;
+  var CodiceFiscale;
+  var Username;
+  var Password;
+  var RepeatPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +32,9 @@ class _LoginFormState extends State<LoginForm> {
                 key: _formKey,
                 child: Column(children: <Widget>[
                   TextFormField(
+                      onSaved: (value) {
+                        Username = value;
+                      },
                       decoration: const InputDecoration(
                         labelText: "Username",
                         labelStyle: TextStyle(
@@ -40,12 +50,15 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Per proseguire, riempi questo campo.';
                         }
                         return null;
                       }),
                   constants.SPACER_MEDIUM,
                   TextFormField(
+                      onSaved: (value) {
+                        Password = value;
+                      },
                       decoration: const InputDecoration(
                         labelText: "Password",
                         labelStyle: TextStyle(
@@ -59,14 +72,47 @@ class _LoginFormState extends State<LoginForm> {
                             borderSide:
                                 BorderSide(color: Colors.grey, width: 1.0)),
                       ),
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Per proseguire, riempi questo campo.';
                         }
                         return null;
                       }),
                   constants.SPACER_MEDIUM,
                   TextFormField(
+                      onSaved: (value) {
+                        RepeatPassword = value;
+                      },
+                      decoration: const InputDecoration(
+                        labelText: "Ripeti la Password",
+                        labelStyle: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 17,
+                            fontFamily: 'AvenirLight'),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0)),
+                      ),
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Per proseguire, riempi questo campo.';
+                        }
+                        return null;
+                      }),
+                  constants.SPACER_MEDIUM,
+                  TextFormField(
+                      onSaved: (value) {
+                        Nome = value;
+                      },
                       decoration: const InputDecoration(
                         labelText: "Nome",
                         labelStyle: TextStyle(
@@ -82,12 +128,15 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Per proseguire, riempi questo campo.';
                         }
                         return null;
                       }),
                   constants.SPACER_MEDIUM,
                   TextFormField(
+                      onSaved: (value) {
+                        Cognome = value;
+                      },
                       decoration: const InputDecoration(
                         labelText: "Cognome",
                         labelStyle: TextStyle(
@@ -103,12 +152,15 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Per proseguire, riempi questo campo.';
                         }
                         return null;
                       }),
                   constants.SPACER_MEDIUM,
                   TextFormField(
+                      onSaved: (value) {
+                        DataDiNascita = value;
+                      },
                       decoration: const InputDecoration(
                         labelText: "Data di Nascita",
                         labelStyle: TextStyle(
@@ -124,12 +176,15 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Per proseguire, riempi questo campo.';
                         }
                         return null;
                       }),
                   constants.SPACER_MEDIUM,
                   TextFormField(
+                      onSaved: (value) {
+                        CodiceFiscale = value;
+                      },
                       decoration: const InputDecoration(
                         labelText: "Codice Fiscale",
                         labelStyle: TextStyle(
@@ -145,7 +200,7 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Per proseguire, riempi questo campo.';
                         }
                         return null;
                       }),
