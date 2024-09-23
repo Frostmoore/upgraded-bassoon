@@ -22,7 +22,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _repeatPassword = TextEditingController();
   var Nome;
   var Cognome;
-  var DataDiNascita;
+  DateTime? _dataDiNascita;
   var CodiceFiscale;
   var Username;
   var Password;
@@ -31,6 +31,7 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    // _dataDiNascita = DateTime.now();
     return Container(
       child: SingleChildScrollView(
         child: Padding(
@@ -219,18 +220,22 @@ class _LoginFormState extends State<LoginForm> {
                         }),
                     constants.SPACER,
                     constants.SPACER,
-                    InputDatePickerFormField(
-                      onDateSaved: (value) {
-                        DataDiNascita = value;
-                      },
-                      onDateSubmitted: (value) {
-                        DataDiNascita = value;
-                      },
-                      firstDate: DateTime(1918),
-                      lastDate: DateTime.now(),
-                      fieldLabelText: "Inserisci la tua Data di Nascita",
-                      errorFormatText: "Inserisci una Data valida",
-                      errorInvalidText: "Inserisci una Data valida",
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            'Data di Nascita: ${_dataDiNascita?.toString() ?? 'Non Selezionata'}',
+                          ),
+                        ),
+                        const Spacer(),
+                        ElevatedButton(
+                          style: constants.STILE_BOTTONE,
+                          onPressed: () {
+                            _selectDate(context);
+                          },
+                          child: Text("Seleziona Data"),
+                        ),
+                      ],
                     ),
                     constants.SPACER,
                     constants.SPACER_MEDIUM,
@@ -246,7 +251,12 @@ class _LoginFormState extends State<LoginForm> {
                           }
                         },
                         style: constants.STILE_BOTTONE,
-                        child: const Text("Registrati!"),
+                        child: const Text(
+                          "REGISTRATI!",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -257,5 +267,19 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1918),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != _dataDiNascita) {
+      setState(() {
+        _dataDiNascita = picked;
+      });
+    }
   }
 }
