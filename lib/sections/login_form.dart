@@ -218,27 +218,52 @@ class _LoginFormState extends State<LoginForm> {
                           }
                           return null;
                         }),
-                    constants.SPACER,
-                    constants.SPACER,
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Text(
-                            'Data di Nascita: ${_dataDiNascita?.toString() ?? 'Non Selezionata'}',
-                          ),
+                    TextFormField(
+                      controller: TextEditingController(
+                          text: _dataDiNascita?.toString().substring(0, 10) ??
+                              'Non Selezionata'),
+                      decoration: const InputDecoration(
+                        labelText: 'Data di Nascita',
+                        labelStyle: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 17,
+                            fontFamily: 'AvenirLight'),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.purple),
                         ),
-                        const Spacer(),
-                        ElevatedButton(
-                          style: constants.STILE_BOTTONE,
-                          onPressed: () {
-                            _selectDate(context);
-                          },
-                          child: Text("Seleziona Data"),
-                        ),
-                      ],
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1.0)),
+                      ),
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      readOnly: true,
                     ),
                     constants.SPACER,
                     constants.SPACER_MEDIUM,
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Privacy Policy',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 21,
+                              ),
+                            ),
+                            constants.SPACER_MEDIUM,
+                            Text(
+                              "Prima di registrarti, assicurati di aver letto la nostra Privacy Policy e di assegnare i tuoi consensi.",
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: ElevatedButton(
