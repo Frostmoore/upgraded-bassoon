@@ -26,7 +26,6 @@ class _AccountContainerState extends State<AccountContainer> {
 
   @override
   Widget build(BuildContext context) {
-    // var width = MediaQuery.of(context).size.width;
     var isLoggedIn = constants.isLoggedIn;
 
     switch (isLoggedIn) {
