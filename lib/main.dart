@@ -5,6 +5,7 @@ import 'package:agenzia_x/firebase_options.dart';
 import 'package:agenzia_x/home.dart';
 import 'package:agenzia_x/sections/web_view_container.dart';
 import 'package:agenzia_x/sections/login_form.dart';
+import 'package:agenzia_x/sections/register_form.dart';
 import 'package:agenzia_x/sections/account.dart';
 import 'package:agenzia_x/sections/chiamata_rapida.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const MyHomePage(title: constants.TITLE),
         '/webViewContainer': (context) => const WebViewContainer(),
-        '/account': (context) => const AccountPage()
+        '/account': (context) => const AccountPage(),
+        '/register': (context) => const RegisterForm()
       },
       title: constants.TITLE,
       theme: ThemeData(
