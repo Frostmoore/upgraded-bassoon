@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:intl/intl.dart';
+// import 'package:agenzia_x/sections/register_form.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class LoginForm extends StatefulWidget {
   final data;
-  const LoginForm({super.key, required this.data});
+  final Function() logParent;
+
+  const LoginForm({super.key, required this.data, required this.logParent});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -138,12 +141,13 @@ class _LoginFormState extends State<LoginForm> {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            );
-                            Navigator.pushNamed(context, '/account');
-                          }
+                          constants.isLoggedIn = 1;
+                          widget.logParent();
+                          // if (_formKey.currentState!.validate()) {
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     const SnackBar(content: Text('Processing Data')),
+                          //   );
+                          // }
                         },
                         style: constants.STILE_BOTTONE,
                         child: const Text(
@@ -158,18 +162,19 @@ class _LoginFormState extends State<LoginForm> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                          "Oppure, registrati ora per accedere alle funzionalità avanzate dell'app."),
+                          "Oppure, iscriviti ora per accedere alle funzionalità avanzate dell'app."),
                     ),
                     constants.SPACER_MEDIUM,
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/register');
+                          constants.isLoggedIn = 2;
+                          widget.logParent();
                         },
                         style: constants.STILE_BOTTONE,
                         child: const Text(
-                          "REGISTRATI!",
+                          "ISCRIVITI!",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),

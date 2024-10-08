@@ -19,6 +19,7 @@ const String PATH = 'www.hybridandgogsv.it';
 const String ENDPOINT = '/res/api.php';
 const String IMG_PATH = 'https://' + PATH + '/res/';
 const String BASE_ADDR = 'https://' + PATH + '/res/';
+int isLoggedIn = 0;
 
 //
 // STILI

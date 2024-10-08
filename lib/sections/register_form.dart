@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class RegisterForm extends StatefulWidget {
-  const RegisterForm({super.key});
+  final data;
+  final Function() logParent;
+  const RegisterForm({super.key, required this.data, required this.logParent});
 
   @override
   State<RegisterForm> createState() => _RegisterFormState();
@@ -295,10 +297,12 @@ class _RegisterFormState extends State<RegisterForm> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            );
-                            Navigator.pushNamed(context, '/account');
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   const SnackBar(content: Text('Processing Data')),
+                            // );
+                            // Navigator.pushNamed(context, '/account');
+                            constants.isLoggedIn = 1;
+                            widget.logParent();
                           }
                         },
                         style: constants.STILE_BOTTONE,

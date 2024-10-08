@@ -3,10 +3,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:agenzia_x/firebase_options.dart';
 import 'package:agenzia_x/home.dart';
-import 'package:agenzia_x/sections/web_view_container.dart';
-import 'package:agenzia_x/sections/login_form.dart';
-import 'package:agenzia_x/sections/register_form.dart';
-import 'package:agenzia_x/sections/account.dart';
+// import 'package:agenzia_x/sections/web_view_container.dart';
+// import 'package:agenzia_x/sections/login_form.dart';
+// import 'package:agenzia_x/sections/register_form.dart';
+// import 'package:agenzia_x/sections/account.dart';
+import 'package:agenzia_x/sections/accountcontainer.dart';
 import 'package:agenzia_x/sections/chiamata_rapida.dart';
 import 'package:flutter/material.dart';
 // import 'package:agenzia_x/firebase_options.dart';
@@ -75,12 +76,7 @@ class MyApp extends StatelessWidget {
     // Return app
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => const MyHomePage(title: constants.TITLE),
-        '/webViewContainer': (context) => const WebViewContainer(),
-        '/account': (context) => const AccountPage(),
-        '/register': (context) => const RegisterForm()
-      },
+      routes: {'/': (context) => const MyHomePage(title: constants.TITLE)},
       title: constants.TITLE,
       theme: ThemeData(
         colorScheme: const ColorScheme.highContrastLight(),
@@ -135,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: _selectedIndex == 0
                 ? HomePage(data: snapshot.data)
-                : LoginForm(data: snapshot.data),
+                : AccountContainer(data: snapshot.data),
             floatingActionButton: ChiamataRapida(data: snapshot.data),
             bottomNavigationBar: BottomNavigationBar(
               items: const <BottomNavigationBarItem>[

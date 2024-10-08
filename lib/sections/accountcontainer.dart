@@ -1,0 +1,43 @@
+// import 'package:accordion/accordion.dart';
+import 'package:agenzia_x/sections/register_form.dart';
+import 'package:flutter/material.dart';
+// import 'package:agenzia_x/sections/chiamata_rapida.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:intl/intl.dart';import 'package:agenzia_x/assets/constants.dart' as constants;
+// import 'package:http/http.dart' as http;
+// import 'dart:convert' as convert;
+//import 'package:notification_permissions/notification_permissions.dart';
+import 'package:agenzia_x/sections/account.dart';
+import 'package:agenzia_x/sections/login_form.dart';
+import 'package:agenzia_x/assets/constants.dart' as constants;
+
+class AccountContainer extends StatefulWidget {
+  final data;
+  const AccountContainer({super.key, required this.data});
+
+  @override
+  State<AccountContainer> createState() => _AccountContainerState();
+}
+
+class _AccountContainerState extends State<AccountContainer> {
+  refresh() {
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // var width = MediaQuery.of(context).size.width;
+    var isLoggedIn = constants.isLoggedIn;
+
+    switch (isLoggedIn) {
+      case 0:
+        return LoginForm(data: widget.data, logParent: refresh);
+      case 1:
+        return AccountPage(data: widget.data, logParent: refresh);
+      case 2:
+        return RegisterForm(data: widget.data, logParent: refresh);
+      default:
+        return LoginForm(data: widget.data, logParent: refresh);
+    }
+  }
+}
