@@ -21,6 +21,8 @@ class _RegisterFormState extends State<RegisterForm> {
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _repeatPassword = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _codAgenzia = TextEditingController();
   var Nome;
   var Cognome;
   DateTime? _dataDiNascita;
@@ -29,6 +31,7 @@ class _RegisterFormState extends State<RegisterForm> {
   var Password;
   var RepeatPassword;
   var CodAgenzia;
+  var Email;
   bool Privacy = false;
 
   @override
@@ -82,7 +85,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         controller: _username,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
+                            return 'Per proseguire, compila questo campo.';
                           }
                           return null;
                         }),
@@ -110,7 +113,12 @@ class _RegisterFormState extends State<RegisterForm> {
                         controller: _password,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
+                            return 'Per proseguire, compila questo campo.';
+                          }
+                          final checkPasswordRegexp = RegExp(
+                              r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+                          if (!checkPasswordRegexp.hasMatch(value)) {
+                            return 'La Password deve essere lunga almeno 8 caratteri e contenere:\nUna lettera Maiuscola\nUna lettera Minuscola\nUn Numero\nUn Carattere Speciale (@ \$ ! % * ? &)';
                           }
                           return null;
                         }),
@@ -138,10 +146,40 @@ class _RegisterFormState extends State<RegisterForm> {
                         controller: _repeatPassword,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
+                            return 'Per proseguire, compila questo campo.';
                           }
                           if (value != _password.text) {
                             return "Le Password non combaciano";
+                          }
+                          return null;
+                        }),
+                    constants.SPACER_MEDIUM,
+                    TextFormField(
+                        onSaved: (value) {
+                          Email = value;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: "Email",
+                          labelStyle: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 17,
+                              fontFamily: 'AvenirLight'),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.purple),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 1.0)),
+                        ),
+                        controller: _email,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Per proseguire, compila questo campo.';
+                          }
+                          final checkEmailRegExp = RegExp(
+                              r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+                          if (!checkEmailRegExp.hasMatch(value)) {
+                            return 'Per favore, inserisci un indirizzo e-mail valido.';
                           }
                           return null;
                         }),
@@ -166,7 +204,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         controller: _nome,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
+                            return 'Per proseguire, compila questo campo.';
                           }
                           return null;
                         }),
@@ -191,7 +229,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         controller: _cognome,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
+                            return 'Per proseguire, compila questo campo.';
                           }
                           return null;
                         }),
@@ -216,7 +254,15 @@ class _RegisterFormState extends State<RegisterForm> {
                         controller: _codiceFiscale,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
+                            return 'Per proseguire, compila questo campo.';
+                          }
+                          final checkCFRegExp = RegExp(
+                            r"^(?:[A-Z][AEIOU][AEIOUX]|[AEIOU]X{2}|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]",
+                            caseSensitive: false,
+                            multiLine: false,
+                          );
+                          if (!checkCFRegExp.hasMatch(value)) {
+                            return 'Per favore, inserisci un Codice Fiscale valido.';
                           }
                           return null;
                         }),
@@ -238,10 +284,10 @@ class _RegisterFormState extends State<RegisterForm> {
                               borderSide:
                                   BorderSide(color: Colors.grey, width: 1.0)),
                         ),
-                        controller: _codiceFiscale,
+                        controller: _codAgenzia,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
+                            return 'Per proseguire, compila questo campo.';
                           }
                           return null;
                         }),
@@ -249,6 +295,12 @@ class _RegisterFormState extends State<RegisterForm> {
                       controller: TextEditingController(
                           text: _dataDiNascita?.toString().substring(0, 10) ??
                               'Non Selezionata'),
+                      validator: (value) {
+                        if (value == null || value == 'Non Selezionata') {
+                          return 'Per proseguire, compila questo campo.';
+                        }
+                        return null;
+                      },
                       decoration: const InputDecoration(
                         labelText: 'Data di Nascita',
                         labelStyle: TextStyle(

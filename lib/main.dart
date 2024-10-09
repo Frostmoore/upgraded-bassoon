@@ -100,8 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Future getData() async {
     var url = Uri.https(constants.PATH, constants.ENDPOINT,
         {'id': constants.ID, 'token': constants.TOKEN});
-    // print(url);
+    // print(url); // Remove in Production
     var response = await http.get(url);
+    // print(response); // Remove in production
     var responseBody = convert.jsonDecode(response.body) as Map;
     // print(responseBody); // Remove in production
     return responseBody;

@@ -18,10 +18,8 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
-  final TextEditingController _repeatPassword = TextEditingController();
   var Username;
   var Password;
-  var RepeatPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -106,37 +104,6 @@ class _LoginFormState extends State<LoginForm> {
                           return null;
                         }),
                     constants.SPACER_MEDIUM,
-                    TextFormField(
-                        onSaved: (value) {
-                          RepeatPassword = value;
-                        },
-                        decoration: const InputDecoration(
-                          labelText: "Ripeti la Password",
-                          labelStyle: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 17,
-                              fontFamily: 'AvenirLight'),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.purple),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 1.0)),
-                        ),
-                        obscureText: true,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        controller: _repeatPassword,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Per proseguire, riempi questo campo.';
-                          }
-                          if (value != _password.text) {
-                            return "Le Password non combaciano";
-                          }
-                          return null;
-                        }),
-                    constants.SPACER_MEDIUM,
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: ElevatedButton(
@@ -162,7 +129,7 @@ class _LoginFormState extends State<LoginForm> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                          "Oppure, iscriviti ora per accedere alle funzionalità avanzate dell'app."),
+                          "Oppure, iscriviti per accedere alle funzionalità avanzate dell'app."),
                     ),
                     constants.SPACER_MEDIUM,
                     Padding(
