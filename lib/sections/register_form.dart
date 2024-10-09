@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-// import 'package:webview_flutter/webview_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
@@ -350,12 +352,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            // ScaffoldMessenger.of(context).showSnackBar(
-                            //   const SnackBar(content: Text('Processing Data')),
-                            // );
-                            // Navigator.pushNamed(context, '/account');
-                            constants.isLoggedIn = 1;
-                            widget.logParent();
+                            _sendData(context);
                           }
                         },
                         style: constants.STILE_BOTTONE,
@@ -389,6 +386,37 @@ class _RegisterFormState extends State<RegisterForm> {
         String formattedDate = DateFormat('dd/MM/yyyy').format(picked);
         _dataDiNascita = formattedDate;
       });
+    }
+  }
+
+  Future<void> _sendData(BuildContext context) async {
+    var url = Uri.https(
+      constants.PATH,
+      constants.ENDPOINT,
+    );
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(<String, dynamic>{
+        'id': constants.ID,
+        'token': constants.TOKEN,
+        'username': _username,
+        'password': _password,
+        'nome': _nome,
+        'cognome': _cognome,
+        'email': _email,
+        'cf': _codiceFiscale,
+        'datadinascita': _dataDiNascita,
+        'codagenzia': _codAgenzia,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      final responseData = jsonDecode(response.body);
+      constants.isLoggedIn = 0;
+      widget.logParent();
+    } else {
+      constants.isLoggedIn = 99;
     }
   }
 }
