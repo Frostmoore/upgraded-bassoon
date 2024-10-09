@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class RegisterForm extends StatefulWidget {
   final data;
@@ -36,6 +37,11 @@ class _RegisterFormState extends State<RegisterForm> {
   var CodAgenzia;
   var Email;
   bool Privacy = false;
+  var _isChecked1 = false;
+  var _isChecked2 = false;
+  var _isChecked3 = false;
+  var _isChecked4 = false;
+  var _isCheckedTutti = false;
 
   @override
   Widget build(BuildContext context) {
@@ -338,19 +344,289 @@ class _RegisterFormState extends State<RegisterForm> {
                               ),
                             ),
                             constants.SPACER_MEDIUM,
-                            Text(
-                              "Prima di registrarti, assicurati di aver letto la nostra Privacy Policy e di assegnare i tuoi consensi.",
-                              textAlign: TextAlign.center,
+                            HtmlWidget(
+                              "<p style='text-align:center;'>Prima di registrarti, assicurati di aver letto la nostra Privacy Policy e di assegnare i tuoi consensi.</p>",
                             ),
                           ],
                         ),
                       ),
                     ),
                     constants.SPACER,
+                    Ink(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: constants.COLORE_PRINCIPALE,
+                      ),
+                      child: InkWell(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 16, 5),
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: _isCheckedTutti,
+                                activeColor: constants.COLORE_TERZIARIO,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    // _isCheckedTutti = value!;
+                                    if (_isCheckedTutti == false) {
+                                      _isCheckedTutti = true;
+                                      if (_isChecked1 == false) {
+                                        _isChecked1 = true;
+                                      }
+                                      if (_isChecked2 == false) {
+                                        _isChecked2 = true;
+                                      }
+                                      if (_isChecked3 == false) {
+                                        _isChecked3 = true;
+                                      }
+                                      if (_isChecked4 == false) {
+                                        _isChecked4 = true;
+                                      }
+                                    } else {
+                                      _isCheckedTutti = false;
+                                      if (_isChecked1 == true) {
+                                        _isChecked1 = false;
+                                      }
+                                      if (_isChecked2 == true) {
+                                        _isChecked2 = false;
+                                      }
+                                      if (_isChecked3 == true) {
+                                        _isChecked3 = false;
+                                      }
+                                      if (_isChecked4 == true) {
+                                        _isChecked4 = false;
+                                      }
+                                    }
+                                  });
+                                },
+                              ),
+                              const Flexible(
+                                child: HtmlWidget(
+                                    "<p style='color: white;'>Acconsento ad ogni trattamento dei miei dati come indicato di seguito.</p>"),
+                              ),
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            if (_isCheckedTutti == false) {
+                              _isCheckedTutti = true;
+                              if (_isChecked1 == false) {
+                                _isChecked1 = true;
+                              }
+                              if (_isChecked2 == false) {
+                                _isChecked2 = true;
+                              }
+                              if (_isChecked3 == false) {
+                                _isChecked3 = true;
+                              }
+                              if (_isChecked4 == false) {
+                                _isChecked4 = true;
+                              }
+                            } else {
+                              _isCheckedTutti = false;
+                              if (_isChecked1 == true) {
+                                _isChecked1 = false;
+                              }
+                              if (_isChecked2 == true) {
+                                _isChecked2 = false;
+                              }
+                              if (_isChecked3 == true) {
+                                _isChecked3 = false;
+                              }
+                              if (_isChecked4 == true) {
+                                _isChecked4 = false;
+                              }
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                    constants.SPACER,
+                    InkWell(
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: _isChecked1,
+                            activeColor: constants.COLORE_TERZIARIO,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (_isChecked1 == false) {
+                                  _isChecked1 = true;
+                                  if (_isChecked2 &&
+                                      _isChecked3 &&
+                                      _isChecked4) {
+                                    _isCheckedTutti = true;
+                                  }
+                                } else {
+                                  _isChecked1 = false;
+                                  _isCheckedTutti = false;
+                                }
+                              });
+                            },
+                          ),
+                          const Flexible(
+                            child: HtmlWidget(
+                                "<p><span style='color:red'>* </span> Acconsento al trattamento dei dati particolari per le finalità indicate al punto 1 dell'informativa.</p>"),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          if (_isChecked1 == false) {
+                            _isChecked1 = true;
+                            if (_isChecked2 && _isChecked3 && _isChecked4) {
+                              _isCheckedTutti = true;
+                            }
+                          } else {
+                            _isChecked1 = false;
+                            _isCheckedTutti = false;
+                          }
+                        });
+                      },
+                    ),
+                    constants.SPACER,
+                    InkWell(
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: _isChecked2,
+                            activeColor: constants.COLORE_TERZIARIO,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (_isChecked2 == false) {
+                                  _isChecked2 = true;
+                                  if (_isChecked1 &&
+                                      _isChecked3 &&
+                                      _isChecked4) {
+                                    _isCheckedTutti = true;
+                                  }
+                                } else {
+                                  _isChecked2 = false;
+                                  _isCheckedTutti = false;
+                                }
+                              });
+                            },
+                          ),
+                          const Flexible(
+                            child: Text(
+                                "Acconsento al trattamento dei miei dati personali di natura comune per finalità di informazione e promozione commerciale di prodotti e/o servizi, a mezzo posta o telefono e/o mediante comunicazioni elettroniche quali e-mail, fax, messaggi del tipo SMS o MMS ovvero con sistemi automatizzati, come specificato ai punti 2a, 2b e 2c dell'informativa."),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          if (_isChecked2 == false) {
+                            _isChecked2 = true;
+                            if (_isChecked1 && _isChecked3 && _isChecked4) {
+                              _isCheckedTutti = true;
+                            }
+                          } else {
+                            _isChecked2 = false;
+                            _isCheckedTutti = false;
+                          }
+                        });
+                      },
+                    ),
+                    constants.SPACER,
+                    InkWell(
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: _isChecked3,
+                            activeColor: constants.COLORE_TERZIARIO,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (_isChecked3 == false) {
+                                  _isChecked3 = true;
+                                  if (_isChecked1 &&
+                                      _isChecked2 &&
+                                      _isChecked4) {
+                                    _isCheckedTutti = true;
+                                  }
+                                } else {
+                                  _isChecked3 = false;
+                                  _isCheckedTutti = false;
+                                }
+                              });
+                            },
+                          ),
+                          const Flexible(
+                            child: Text(
+                                "Acconsento al trattamento dei miei dati personali di natura comune per finalità di comunicazione dei dati a soggetti terzi, operanti nel settore assicurativo e nei settori complementari a quello assicurativo, ai fini di informazione e promozione commerciale di prodotti e/o servizi, anche mediante tecniche di comunicazione a distanza, da parte degli stessi, come specificato al punto 2d dell'informativa."),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          if (_isChecked3 == false) {
+                            _isChecked3 = true;
+                            if (_isChecked1 && _isChecked2 && _isChecked4) {
+                              _isCheckedTutti = true;
+                            }
+                          } else {
+                            _isChecked3 = false;
+                            _isCheckedTutti = false;
+                          }
+                        });
+                      },
+                    ),
+                    constants.SPACER,
+                    InkWell(
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: _isChecked4,
+                            activeColor: constants.COLORE_TERZIARIO,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (_isChecked4 == false) {
+                                  _isChecked4 = true;
+                                  if (_isChecked1 &&
+                                      _isChecked2 &&
+                                      _isChecked3) {
+                                    _isCheckedTutti = true;
+                                  }
+                                } else {
+                                  _isChecked4 = false;
+                                  _isCheckedTutti = false;
+                                }
+                              });
+                            },
+                          ),
+                          const Flexible(
+                            child: Text(
+                                "Acconsento al trattamento dei miei dati personali di natura comune per finalità di profilazione volta ad analizzare i bisogni e le esigenze assicurative del cliente per l'individuazione, anche attraverso elaborazioni elettroniche, dei possibili prodotti e/o servizi in linea con le preferenze e gli interessi della clientela come specificato al punto 2e dell'informativa."),
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          if (_isChecked4 == false) {
+                            _isChecked4 = true;
+                            if (_isChecked1 && _isChecked2 && _isChecked3) {
+                              _isCheckedTutti = true;
+                            }
+                          } else {
+                            _isChecked4 = false;
+                            _isCheckedTutti = false;
+                          }
+                        });
+                      },
+                    ),
+                    constants.SPACER,
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: ElevatedButton(
                         onPressed: () {
+                          if (!_isChecked1) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    "È obbligatorio acconsentire almeno al primo punto della liberatoria."),
+                              ),
+                            );
+                          }
                           if (_formKey.currentState!.validate()) {
                             _sendData(context);
                           }
@@ -408,15 +684,20 @@ class _RegisterFormState extends State<RegisterForm> {
         'cf': _codiceFiscale,
         'datadinascita': _dataDiNascita,
         'codagenzia': _codAgenzia,
+        'privacy1': _isChecked1,
+        'privacy2': _isChecked2,
+        'privacy3': _isChecked3,
+        'privacy4': _isChecked4,
       }),
     );
 
     if (response.statusCode == 201) {
-      final responseData = jsonDecode(response.body);
+      // final responseData = jsonDecode(response.body);
       constants.isLoggedIn = 0;
       widget.logParent();
     } else {
       constants.isLoggedIn = 99;
+      widget.logParent();
     }
   }
 }
