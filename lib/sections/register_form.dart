@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
-// import 'package:intl/intl.dart';
+import 'package:intl/intl.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class RegisterForm extends StatefulWidget {
@@ -25,7 +25,8 @@ class _RegisterFormState extends State<RegisterForm> {
   final TextEditingController _codAgenzia = TextEditingController();
   var Nome;
   var Cognome;
-  DateTime? _dataDiNascita;
+  // DateTime? _dataDiNascita;
+  var _dataDiNascita;
   var CodiceFiscale;
   var Username;
   var Password;
@@ -380,12 +381,13 @@ class _RegisterFormState extends State<RegisterForm> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(1918),
+      firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
     if (picked != null && picked != _dataDiNascita) {
       setState(() {
-        _dataDiNascita = picked;
+        String formattedDate = DateFormat('dd/MM/yyyy').format(picked);
+        _dataDiNascita = formattedDate;
       });
     }
   }
