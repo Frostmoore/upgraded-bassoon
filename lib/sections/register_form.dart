@@ -67,7 +67,7 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
               const Center(
                 child: Text(
-                  "Compila il form qui sotto e accetta la liberatoria privacy per registrarti in questa agenzia.",
+                  "Compila il form e accetta l'informativa sulla privacy per avere accesso alle funzionalità avanzate dell'App.",
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -642,6 +642,24 @@ class _RegisterFormState extends State<RegisterForm> {
                         style: constants.STILE_BOTTONE,
                         child: const Text(
                           "REGISTRATI!",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    constants.SPACER_MEDIUM,
+                    Text("Sei già registrato?"),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          constants.isLoggedIn = 0;
+                          widget.logParent();
+                        },
+                        style: constants.STILE_BOTTONE,
+                        child: const Text(
+                          "ACCEDI!",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
