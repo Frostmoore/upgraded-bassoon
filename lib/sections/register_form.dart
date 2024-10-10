@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:agenzia_x/sections/liberatoria.dart';
 
 class RegisterForm extends StatefulWidget {
   final data;
@@ -46,6 +47,7 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     // _dataDiNascita = DateTime.now();
+    // final data = widget.data;
     return Container(
       child: SingleChildScrollView(
         child: Padding(
@@ -330,13 +332,13 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
                     constants.SPACER,
                     constants.SPACER_MEDIUM,
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Center(
                         child: Column(
                           children: [
-                            Text(
-                              'Privacy Policy',
+                            const Text(
+                              'Informativa Privacy',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -344,8 +346,14 @@ class _RegisterFormState extends State<RegisterForm> {
                               ),
                             ),
                             constants.SPACER_MEDIUM,
-                            HtmlWidget(
-                              "<p style='text-align:center;'>Prima di registrarti, assicurati di aver letto la nostra Privacy Policy e di assegnare i tuoi consensi.</p>",
+                            Ink(
+                              child: InkWell(
+                                onTap: () =>
+                                    _dialogBuilder(context, widget.data),
+                                child: const HtmlWidget(
+                                  "<p style='text-align:center;'>Prima di registrarti, assicurati di aver letto la nostra <span style='text-decoration:underline;color:blue;'>Informativa Privacy</span> e di assegnare i tuoi consensi.</p>",
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -648,6 +656,27 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       ),
     );
+  }
+
+  Future<void> _dialogBuilder(BuildContext context, data) {
+    data = widget.data;
+    return showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Informativa Privacy"),
+            content: Liberatoria(data: data),
+            actions: <Widget>[
+              TextButton(
+                style: constants.STILE_BOTTONE,
+                child: const Text("Chiudi"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 
   Future<void> _selectDate(BuildContext context) async {
