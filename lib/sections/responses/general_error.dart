@@ -14,26 +14,21 @@ class GeneralError extends StatefulWidget {
 class _GeneralErrorState extends State<GeneralError> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Column(
-            children: [
-              const HtmlWidget(
-                  "<h2 style='text-align:center;font-weight:bold;'>ATTENZIONE!</h2><p style='text-align:center;'>Si è verificato un errore. Riprova più tardi.</p>"),
-              constants.SPACER_MEDIUM,
-              ElevatedButton(
-                style: constants.STILE_BOTTONE,
-                onPressed: () {
-                  constants.isLoggedIn = 0;
-                  widget.logParent();
-                },
-                child: const Text("INDIETRO"),
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const HtmlWidget(
+            "<h2 style='text-align:center;font-weight:bold;'>ATTENZIONE!</h2><p style='text-align:center;'>Si è verificato un errore. Riprova più tardi.</p>"),
+        constants.SPACER_MEDIUM,
+        ElevatedButton(
+          style: constants.STILE_BOTTONE,
+          onPressed: () {
+            constants.isLoggedIn = 0;
+            widget.logParent();
+          },
+          child: const Text("INDIETRO"),
+        ),
+      ],
     );
   }
 }

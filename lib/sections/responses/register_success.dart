@@ -15,26 +15,21 @@ class RegisterSuccess extends StatefulWidget {
 class _RegisterSuccessState extends State<RegisterSuccess> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Column(
-            children: [
-              const HtmlWidget(
-                  "<h2 style='text-align:center;font-weight:bold;'>Complimenti! Ti sei registrato con successo!</h2>"),
-              constants.SPACER_MEDIUM,
-              ElevatedButton(
-                style: constants.STILE_BOTTONE,
-                onPressed: () {
-                  constants.isLoggedIn = 0;
-                  widget.logParent();
-                },
-                child: const Text("ACCEDI!"),
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const HtmlWidget(
+            "<h2 style='text-align:center;font-weight:bold;'>Complimenti! Ti sei registrato con successo!</h2>"),
+        constants.SPACER_MEDIUM,
+        ElevatedButton(
+          style: constants.STILE_BOTTONE,
+          onPressed: () {
+            constants.isLoggedIn = 0;
+            widget.logParent();
+          },
+          child: const Text("ACCEDI!"),
+        ),
+      ],
     );
   }
 }

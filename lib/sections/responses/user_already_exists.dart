@@ -15,39 +15,34 @@ class UserAlreadyExists extends StatefulWidget {
 class _UserAlreadyExistsState extends State<UserAlreadyExists> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Column(
-            children: [
-              const HtmlWidget(
-                  "<h2 style='text-align:center;font-weight:bold;'>ATTENZIONE!</h2><p style='text-align:center;'>Un utente con il Codice Fiscale che hai inserito è già esistente tra i nostri clienti. Accedi con le tue credenziali.</p>"),
-              constants.SPACER_MEDIUM,
-              ElevatedButton(
-                style: constants.STILE_BOTTONE,
-                onPressed: () {
-                  constants.isLoggedIn = 0;
-                  widget.logParent();
-                },
-                child: const Text("ACCEDI!"),
-              ),
-              constants.SPACER_MEDIUM,
-              const Text(
-                "Hai dimenticato la tua Password?",
-                textAlign: TextAlign.center,
-              ),
-              ElevatedButton(
-                style: constants.STILE_BOTTONE,
-                onPressed: () {
-                  constants.isLoggedIn = 99;
-                  widget.logParent();
-                },
-                child: const Text("Recupera Password!"),
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const HtmlWidget(
+            "<h2 style='text-align:center;font-weight:bold;'>ATTENZIONE!</h2><p style='text-align:center;'>Un utente con il Codice Fiscale che hai inserito è già esistente tra i nostri clienti. Accedi con le tue credenziali.</p>"),
+        constants.SPACER_MEDIUM,
+        ElevatedButton(
+          style: constants.STILE_BOTTONE,
+          onPressed: () {
+            constants.isLoggedIn = 0;
+            widget.logParent();
+          },
+          child: const Text("ACCEDI!"),
+        ),
+        constants.SPACER_MEDIUM,
+        const Text(
+          "Hai dimenticato la tua Password?",
+          textAlign: TextAlign.center,
+        ),
+        ElevatedButton(
+          style: constants.STILE_BOTTONE,
+          onPressed: () {
+            constants.isLoggedIn = 99;
+            widget.logParent();
+          },
+          child: const Text("Recupera Password!"),
+        ),
+      ],
     );
   }
 }

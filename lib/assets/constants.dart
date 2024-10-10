@@ -19,6 +19,7 @@ const String PATH = 'www.hybridandgogsv.it';
 const String ENDPOINT = '/res/api.php';
 const String ENDPOINT_REG = '/res/reg.php';
 const String ENDPOINT_LOG = '/res/auth.php';
+const String ENDPOINT_PASS = '/res/pass.php';
 const String IMG_PATH = 'https://' + PATH + '/res/';
 const String BASE_ADDR = 'https://' + PATH + '/res/';
 int isLoggedIn = 0;

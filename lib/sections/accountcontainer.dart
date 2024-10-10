@@ -1,4 +1,5 @@
 // import 'package:accordion/accordion.dart';
+import 'package:agenzia_x/sections/password_dimenticata.dart';
 import 'package:agenzia_x/sections/register_form.dart';
 import 'package:flutter/material.dart';
 // import 'package:agenzia_x/sections/chiamata_rapida.dart';
@@ -13,6 +14,7 @@ import 'package:agenzia_x/sections/responses/register_success.dart';
 import 'package:agenzia_x/sections/responses/user_already_exists.dart';
 import 'package:agenzia_x/sections/responses/codice_agenzia_errato.dart';
 import 'package:agenzia_x/sections/responses/general_error.dart';
+// import 'package:agenzia_x/sections/password_dimenticata.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class AccountContainer extends StatefulWidget {
@@ -45,6 +47,8 @@ class _AccountContainerState extends State<AccountContainer> {
         return CodiceAgenziaErrato(data: widget.data, logParent: refresh);
       case 5:
         return RegisterSuccess(data: widget.data, logParent: refresh);
+      case 99:
+        return PasswordDimenticata(data: widget.data, logParent: refresh);
       case 100:
         return GeneralError(data: widget.data, logParent: refresh);
       default:

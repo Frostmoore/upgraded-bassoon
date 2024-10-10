@@ -15,26 +15,21 @@ class CodiceAgenziaErrato extends StatefulWidget {
 class _CodiceAgenziaErratoState extends State<CodiceAgenziaErrato> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Column(
-            children: [
-              const HtmlWidget(
-                  "<h2 style='text-align:center;font-weight:bold;'>ATTENZIONE!</h2><p style='text-align:center;'>Il Codice Agenzia che hai inserito non risulta corretto.</p><p>Contatta la tua Agenzia per riceverne uno valido.</p>"),
-              constants.SPACER_MEDIUM,
-              ElevatedButton(
-                style: constants.STILE_BOTTONE,
-                onPressed: () {
-                  constants.isLoggedIn = 0;
-                  widget.logParent();
-                },
-                child: const Text("INDIETRO"),
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const HtmlWidget(
+            "<h2 style='text-align:center;font-weight:bold;'>ATTENZIONE!</h2><p style='text-align:center;'>Il Codice Agenzia che hai inserito non risulta corretto.</p><p style='text-align:center;'>Contatta la tua Agenzia per riceverne uno valido.</p>"),
+        constants.SPACER_MEDIUM,
+        ElevatedButton(
+          style: constants.STILE_BOTTONE,
+          onPressed: () {
+            constants.isLoggedIn = 0;
+            widget.logParent();
+          },
+          child: const Text("INDIETRO"),
+        ),
+      ],
     );
   }
 }
