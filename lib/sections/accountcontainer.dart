@@ -9,6 +9,10 @@ import 'package:flutter/material.dart';
 //import 'package:notification_permissions/notification_permissions.dart';
 import 'package:agenzia_x/sections/account.dart';
 import 'package:agenzia_x/sections/login_form.dart';
+import 'package:agenzia_x/sections/responses/register_success.dart';
+import 'package:agenzia_x/sections/responses/user_already_exists.dart';
+import 'package:agenzia_x/sections/responses/codice_agenzia_errato.dart';
+import 'package:agenzia_x/sections/responses/general_error.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class AccountContainer extends StatefulWidget {
@@ -35,6 +39,14 @@ class _AccountContainerState extends State<AccountContainer> {
         return AccountPage(data: widget.data, logParent: refresh);
       case 2:
         return RegisterForm(data: widget.data, logParent: refresh);
+      case 3:
+        return UserAlreadyExists(data: widget.data, logParent: refresh);
+      case 4:
+        return CodiceAgenziaErrato(data: widget.data, logParent: refresh);
+      case 5:
+        return RegisterSuccess(data: widget.data, logParent: refresh);
+      case 100:
+        return GeneralError(data: widget.data, logParent: refresh);
       default:
         return LoginForm(data: widget.data, logParent: refresh);
     }

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:agenzia_x/sections/liberatoria.dart';
+// import 'dart:developer';
 
 class RegisterForm extends StatefulWidget {
   final data;
@@ -745,11 +746,12 @@ class _RegisterFormState extends State<RegisterForm> {
       body: jsonEncode(request),
     );
 
-    if (response.statusCode == 201) {
-      constants.isLoggedIn = 0;
+    if (response.statusCode == 200) {
+      var responseParsed = jsonDecode(response.body) as Map;
+      constants.isLoggedIn = int.parse(responseParsed['http_response_code']);
       widget.logParent();
     } else {
-      constants.isLoggedIn = 99;
+      constants.isLoggedIn = 100;
       widget.logParent();
     }
   }

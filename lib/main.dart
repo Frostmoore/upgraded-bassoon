@@ -98,8 +98,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   Future getData() async {
-    var url = Uri.https(constants.PATH, constants.ENDPOINT,
-        {'id': constants.ID, 'token': constants.TOKEN});
+    var url = Uri.https(
+      constants.PATH,
+      constants.ENDPOINT,
+      {
+        'id': constants.ID,
+        'token': constants.TOKEN,
+      },
+    );
     // print(url); // Remove in Production
     var response = await http.get(url);
     // print(response); // Remove in production

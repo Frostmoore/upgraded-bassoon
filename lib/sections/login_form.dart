@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
 // import 'package:agenzia_x/sections/register_form.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class LoginForm extends StatefulWidget {
   final data;
@@ -125,26 +126,32 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                       ),
                     ),
+                    InkWell(
+                      onTap: () {
+                        constants.isLoggedIn = 99;
+                        widget.logParent();
+                      },
+                      child: const HtmlWidget(
+                          "<p style='text-align:center;text-decoration:underline;color:blue;'>Password Dimenticata?</p>"),
+                    ),
                     constants.SPACER_MEDIUM,
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                          "Oppure, iscriviti per accedere alle funzionalità avanzate dell'app."),
+                        "Oppure, effettua la registrazione per accedere alle funzionalità avanzate dell'app.",
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    constants.SPACER_MEDIUM,
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          constants.isLoggedIn = 2;
-                          widget.logParent();
-                        },
-                        style: constants.STILE_BOTTONE,
-                        child: const Text(
-                          "ISCRIVITI!",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                    ElevatedButton(
+                      onPressed: () {
+                        constants.isLoggedIn = 2;
+                        widget.logParent();
+                      },
+                      style: constants.STILE_BOTTONE,
+                      child: const Text(
+                        "ISCRIVITI!",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
