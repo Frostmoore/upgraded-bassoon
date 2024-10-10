@@ -721,31 +721,31 @@ class _RegisterFormState extends State<RegisterForm> {
   Future<void> _sendData(BuildContext context) async {
     var url = Uri.https(
       constants.PATH,
-      constants.ENDPOINT,
+      constants.ENDPOINT_REG,
     );
+    var request = {
+      'id': constants.ID,
+      'token': constants.TOKEN,
+      'username': _username.text,
+      'password': _password.text,
+      'nome': _nome.text,
+      'cognome': _cognome.text,
+      'email': _email.text,
+      'cf': _codiceFiscale.text,
+      'datadinascita': _dataDiNascita,
+      'codagenzia': _codAgenzia.text,
+      'privacy1': _isChecked1,
+      'privacy2': _isChecked2,
+      'privacy3': _isChecked3,
+      'privacy4': _isChecked4,
+    };
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(<String, dynamic>{
-        'id': constants.ID,
-        'token': constants.TOKEN,
-        'username': _username,
-        'password': _password,
-        'nome': _nome,
-        'cognome': _cognome,
-        'email': _email,
-        'cf': _codiceFiscale,
-        'datadinascita': _dataDiNascita,
-        'codagenzia': _codAgenzia,
-        'privacy1': _isChecked1,
-        'privacy2': _isChecked2,
-        'privacy3': _isChecked3,
-        'privacy4': _isChecked4,
-      }),
+      body: jsonEncode(request),
     );
 
     if (response.statusCode == 201) {
-      // final responseData = jsonDecode(response.body);
       constants.isLoggedIn = 0;
       widget.logParent();
     } else {
