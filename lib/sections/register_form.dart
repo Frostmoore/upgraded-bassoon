@@ -663,18 +663,24 @@ class _RegisterFormState extends State<RegisterForm> {
     return showDialog<void>(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Informativa Privacy"),
-            content: Liberatoria(data: data),
-            actions: <Widget>[
-              TextButton(
-                style: constants.STILE_BOTTONE,
-                child: const Text("Chiudi"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
+          return Theme(
+            data:
+                Theme.of(context).copyWith(dialogBackgroundColor: Colors.white),
+            child: AlertDialog(
+              backgroundColor: Colors.white,
+              surfaceTintColor: Colors.white,
+              title: const Text("Informativa Privacy"),
+              content: Liberatoria(data: data),
+              actions: <Widget>[
+                TextButton(
+                  style: constants.STILE_BOTTONE,
+                  child: const Text("Chiudi"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ),
           );
         });
   }

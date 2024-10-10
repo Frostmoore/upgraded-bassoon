@@ -47,63 +47,68 @@ class _LiberatoriaState extends State<Liberatoria> {
     String capitolo9 =
         "<p style='text-align:justify;'>Il Titolare del trattamento dei dati personali è <strong>$nomeAgenzia</strong> con sede in <strong>$indirizzoAgenzia</strong>. Il Titolare conserva una lista aggiornata dei responsabili nominati, e ne garantisce la presa visione all’interessato presso la sede sopra indicata.</p>";
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Informativa sulla Tutela dei dati personali</h2>",
+    return Scrollbar(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Informativa sulla Tutela dei dati personali</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo1),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Finalità di trattamento e base giuridica</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo2),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Natura obblicatoria e facoltativa del conferimento dei dati e conseguenze di un eventuale rifiuto</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo3),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Modalità di trattamento</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo4),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Tempi di conservazione</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo5),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Ambito di conoscenza dei dati</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo6),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Comunicazione e diffusione</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo7),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Diritti dell'interessato</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo8),
+              constants.SPACER,
+              const HtmlWidget(
+                "<h2 style='text-align:center;'>Titolare del trattamento</h2>",
+              ),
+              constants.SPACER_MEDIUM,
+              HtmlWidget(capitolo9),
+            ],
           ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo1),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Finalità di trattamento e base giuridica</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo2),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Natura obblicatoria e facoltativa del conferimento dei dati e conseguenze di un eventuale rifiuto</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo3),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Modalità di trattamento</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo4),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Tempi di conservazione</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo5),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Ambito di conoscenza dei dati</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo6),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Comunicazione e diffusione</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo7),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Diritti dell'interessato</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo8),
-          constants.SPACER,
-          const HtmlWidget(
-            "<h2 style='text-align:center;'>Titolare del trattamento</h2>",
-          ),
-          constants.SPACER_MEDIUM,
-          HtmlWidget(capitolo9),
-        ],
+        ),
       ),
     );
   }
