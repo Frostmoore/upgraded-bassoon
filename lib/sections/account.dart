@@ -26,11 +26,14 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var nome = widget.dataUtente['result']['nome'];
+    String saluto =
+        'Ciao $nome, controlla i dettagli delle tue polizze e verificane i dati, qui avrai tutte le informazioni di cui potresti aver bisogno.';
 
     return Container(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
               constants.SPACER,
@@ -46,9 +49,7 @@ class _AccountPageState extends State<AccountPage> {
               ),
               Center(
                 child: Text(
-                  "Ciao " +
-                      widget.dataUtente['result']['nome'] +
-                      ", controlla i dettagli delle tue polizze e verificane i dati, qui avrai tutte le informazioni di cui potresti aver bisogno.",
+                  saluto,
                   textAlign: TextAlign.center,
                 ),
               ),
