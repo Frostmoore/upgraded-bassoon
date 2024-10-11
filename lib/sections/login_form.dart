@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:intl/intl.dart';
 // import 'package:agenzia_x/sections/register_form.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
@@ -57,7 +59,7 @@ class _LoginFormState extends State<LoginForm> {
                           Username = value;
                         },
                         decoration: const InputDecoration(
-                          labelText: "Username",
+                          labelText: "Username, e-mail o Codice Fiscale",
                           labelStyle: TextStyle(
                               color: Colors.black87,
                               fontSize: 17,
@@ -109,13 +111,11 @@ class _LoginFormState extends State<LoginForm> {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: ElevatedButton(
                         onPressed: () {
-                          constants.isLoggedIn = 1;
-                          widget.logParent();
-                          // if (_formKey.currentState!.validate()) {
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     const SnackBar(content: Text('Processing Data')),
-                          //   );
-                          // }
+                          if (_formKey.currentState!.validate()) {
+                            _sendData(context);
+                            // constants.isLoggedIn = 1;
+                            // widget.logParent();
+                          }
                         },
                         style: constants.STILE_BOTTONE,
                         child: const Text(
@@ -138,7 +138,7 @@ class _LoginFormState extends State<LoginForm> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text(
-                        "Oppure, effettua la registrazione per accedere alle funzionalità avanzate dell'app.",
+                        "Se non l'hai ancora fatto, effettua la registrazione per accedere alle funzionalità avanzate dell'app.",
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -163,5 +163,32 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
+  }
+
+  Future<void> _sendData(BuildContext context) async {
+    var url = Uri.https(
+      constants.PATH,
+      constants.ENDPOINT_LOG,
+    );
+    var request = {
+      'id': constants.ID,
+      'token': constants.TOKEN,
+      'username': _username.text,
+      'password': _password.text,
+    };
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(request),
+    );
+
+    if (response.statusCode == 200) {
+      var responseParsed = jsonDecode(response.body) as Map;
+      constants.isLoggedIn = int.parse(responseParsed['http_response_code']);
+      widget.logParent();
+    } else {
+      constants.isLoggedIn = 100;
+      widget.logParent();
+    }
   }
 }

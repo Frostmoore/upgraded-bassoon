@@ -15,6 +15,8 @@ import 'package:agenzia_x/sections/responses/user_already_exists.dart';
 import 'package:agenzia_x/sections/responses/codice_agenzia_errato.dart';
 import 'package:agenzia_x/sections/responses/general_error.dart';
 import 'package:agenzia_x/sections/responses/reset_password.dart';
+import 'package:agenzia_x/sections/responses/login_fallito.dart';
+import 'package:agenzia_x/sections/responses/utente_non_attivo.dart';
 // import 'package:agenzia_x/sections/password_dimenticata.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
@@ -50,6 +52,10 @@ class _AccountContainerState extends State<AccountContainer> {
         return RegisterSuccess(data: widget.data, logParent: refresh);
       case 6:
         return ResetPassword(data: widget.data, logParent: refresh);
+      case 97:
+        return UtenteNonAttivo(data: widget.data, logParent: refresh);
+      case 98:
+        return LoginFallito(data: widget.data, logParent: refresh);
       case 99:
         return PasswordDimenticata(data: widget.data, logParent: refresh);
       case 100:
