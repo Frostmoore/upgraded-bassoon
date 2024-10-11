@@ -10,8 +10,13 @@ import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class AccountPage extends StatefulWidget {
   final data;
+  final dataUtente;
   final Function() logParent;
-  const AccountPage({super.key, required this.data, required this.logParent});
+  const AccountPage(
+      {super.key,
+      required this.data,
+      required this.logParent,
+      required this.dataUtente});
 
   @override
   State<AccountPage> createState() => _AccountPageState();
@@ -39,9 +44,11 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              const Center(
+              Center(
                 child: Text(
-                  "Ciao %NOME%, controlla i dettagli delle tue polizze e verificane i dati, qui avrai tutte le informazioni di cui potresti aver bisogno.",
+                  "Ciao " +
+                      widget.dataUtente['result']['nome'] +
+                      ", controlla i dettagli delle tue polizze e verificane i dati, qui avrai tutte le informazioni di cui potresti aver bisogno.",
                   textAlign: TextAlign.center,
                 ),
               ),

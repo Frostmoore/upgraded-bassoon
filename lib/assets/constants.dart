@@ -23,6 +23,7 @@ const String ENDPOINT_PASS = '/res/pass.php';
 const String IMG_PATH = 'https://' + PATH + '/res/';
 const String BASE_ADDR = 'https://' + PATH + '/res/';
 int isLoggedIn = 0;
+var dataUtente;
 
 //
 // STILI

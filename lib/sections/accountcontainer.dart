@@ -36,12 +36,14 @@ class _AccountContainerState extends State<AccountContainer> {
   @override
   Widget build(BuildContext context) {
     var isLoggedIn = constants.isLoggedIn;
+    var dataUtente = constants.dataUtente;
 
     switch (isLoggedIn) {
       case 0:
         return LoginForm(data: widget.data, logParent: refresh);
       case 1:
-        return AccountPage(data: widget.data, logParent: refresh);
+        return AccountPage(
+            data: widget.data, logParent: refresh, dataUtente: dataUtente);
       case 2:
         return RegisterForm(data: widget.data, logParent: refresh);
       case 3:

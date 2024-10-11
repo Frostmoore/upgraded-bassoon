@@ -185,6 +185,7 @@ class _LoginFormState extends State<LoginForm> {
     if (response.statusCode == 200) {
       var responseParsed = jsonDecode(response.body) as Map;
       constants.isLoggedIn = int.parse(responseParsed['http_response_code']);
+      constants.dataUtente = responseParsed;
       widget.logParent();
     } else {
       constants.isLoggedIn = 100;
