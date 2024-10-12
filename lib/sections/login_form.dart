@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // import 'package:agenzia_x/sections/register_form.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
@@ -185,8 +187,18 @@ class _LoginFormState extends State<LoginForm> {
     if (response.statusCode == 200) {
       var responseParsed = jsonDecode(response.body) as Map;
       constants.isLoggedIn = int.parse(responseParsed['http_response_code']);
-      constants.dataUtente = responseParsed;
-      widget.logParent();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (prefs.containsKey('notFirstTime')) {
+        constants.dataUtente = responseParsed;
+        widget.logParent();
+      } else {
+        prefs.setString('notFirstTime', 'true');
+        final storage = FlutterSecureStorage();
+        await storage.write(key: 'username', value: _username.text);
+        await storage.write(key: 'password', value: _password.text);
+        constants.dataUtente = responseParsed;
+        widget.logParent();
+      }
     } else {
       constants.isLoggedIn = 100;
       widget.logParent();

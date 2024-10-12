@@ -89,11 +89,12 @@ class _AccountPageState extends State<AccountPage> {
               ),
               constants.SPACER,
               ElevatedButton(
+                style: constants.STILE_BOTTONE,
                 onPressed: () {
                   constants.isLoggedIn = 0;
                   widget.logParent();
                 },
-                child: Text("Esci"),
+                child: Text("ESCI"),
               )
             ],
           ),

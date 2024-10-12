@@ -713,7 +713,7 @@ class _RegisterFormState extends State<RegisterForm> {
     );
     if (picked != null && picked != _dataDiNascita) {
       setState(() {
-        String formattedDate = DateFormat('dd/MM/yyyy').format(picked);
+        String formattedDate = DateFormat('yyyy-MM-dd hh:mm:ss').format(picked);
         _dataDiNascita = formattedDate;
       });
     }

@@ -17,6 +17,7 @@ import 'package:firebase_core/firebase_core.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/services.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:notification_permissions/notification_permissions.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
