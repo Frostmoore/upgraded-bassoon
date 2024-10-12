@@ -29,7 +29,6 @@ class _AccountPageState extends State<AccountPage> {
     var nome = widget.dataUtente['result']['nome'];
     String saluto =
         'Ciao $nome, controlla i dettagli delle tue polizze e verificane i dati, qui avrai tutte le informazioni di cui potresti aver bisogno.';
-
     return Container(
       child: SingleChildScrollView(
         child: Padding(

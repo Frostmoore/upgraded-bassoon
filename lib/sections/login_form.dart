@@ -168,40 +168,80 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Future<void> _sendData(BuildContext context) async {
-    var url = Uri.https(
-      constants.PATH,
-      constants.ENDPOINT_LOG,
-    );
-    var request = {
-      'id': constants.ID,
-      'token': constants.TOKEN,
-      'username': _username.text,
-      'password': _password.text,
-    };
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(request),
-    );
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final storage = FlutterSecureStorage();
 
-    if (response.statusCode == 200) {
-      var responseParsed = jsonDecode(response.body) as Map;
-      constants.isLoggedIn = int.parse(responseParsed['http_response_code']);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      if (prefs.containsKey('notFirstTime')) {
-        constants.dataUtente = responseParsed;
-        widget.logParent();
+    if (prefs.containsKey('local_auth_enabled')) {
+      if (prefs.getString('local_auth_enabled') == 'true') {
+        // Chiamata con local_auth_enabled
+        var username = await storage.containsKey(key: 'username')
+            ? storage.read(key: 'username')
+            : 'null';
+        var password = await storage.containsKey(key: 'password')
+            ? storage.read(key: 'password')
+            : 'null';
+        var url = Uri.https(
+          constants.PATH,
+          constants.ENDPOINT_LOG,
+        );
+        var request = {
+          'id': constants.ID,
+          'token': constants.TOKEN,
+          'username': username,
+          'password': password,
+        };
+        final response = await http.post(
+          url,
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(request),
+        );
+        if (response.statusCode == 200) {
+          var responseParsed = jsonDecode(response.body) as Map;
+          constants.isLoggedIn =
+              int.parse(responseParsed['http_response_code']);
+          prefs.setString('notFirstTime', 'true');
+          constants.dataUtente = responseParsed;
+          widget.logParent();
+        } else {
+          constants.isLoggedIn = 100;
+          widget.logParent();
+        }
       } else {
-        prefs.setString('notFirstTime', 'true');
-        final storage = FlutterSecureStorage();
-        await storage.write(key: 'username', value: _username.text);
-        await storage.write(key: 'password', value: _password.text);
-        constants.dataUtente = responseParsed;
-        widget.logParent();
+        // Chiamata senza local_auth_enabled
+        var url = Uri.https(
+          constants.PATH,
+          constants.ENDPOINT_LOG,
+        );
+        var request = {
+          'id': constants.ID,
+          'token': constants.TOKEN,
+          'username': _username.text,
+          'password': _password.text,
+        };
+        final response = await http.post(
+          url,
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(request),
+        );
+        if (response.statusCode == 200) {
+          var responseParsed = jsonDecode(response.body) as Map;
+          constants.isLoggedIn =
+              int.parse(responseParsed['http_response_code']);
+          if (prefs.containsKey('notFirstTime')) {
+            constants.dataUtente = responseParsed;
+            widget.logParent();
+          } else {
+            prefs.setString('notFirstTime', 'true');
+            await storage.write(key: 'username', value: _username.text);
+            await storage.write(key: 'password', value: _password.text);
+            constants.dataUtente = responseParsed;
+            widget.logParent();
+          }
+        } else {
+          constants.isLoggedIn = 100;
+          widget.logParent();
+        }
       }
-    } else {
-      constants.isLoggedIn = 100;
-      widget.logParent();
     }
   }
 }
