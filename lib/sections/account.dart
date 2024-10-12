@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:convert' as convert;
 //import 'package:notification_permissions/notification_permissions.dart';
+// import 'package:local_auth/local_auth.dart';
+// import 'dart:developer';
 import 'package:agenzia_x/assets/constants.dart' as constants;
 
 class AccountPage extends StatefulWidget {
@@ -29,6 +31,7 @@ class _AccountPageState extends State<AccountPage> {
     var nome = widget.dataUtente['result']['nome'];
     String saluto =
         'Ciao $nome, controlla i dettagli delle tue polizze e verificane i dati, qui avrai tutte le informazioni di cui potresti aver bisogno.';
+
     return Container(
       child: SingleChildScrollView(
         child: Padding(
