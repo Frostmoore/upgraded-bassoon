@@ -15,7 +15,9 @@ class _AccountHeaderState extends State<AccountHeader> {
   @override
   Widget build(BuildContext context) {
     print(widget.userData);
-    var nome = widget.userData['result']['nome'];
+    var nome = widget.userData['http_status_code'] == 1
+        ? widget.userData['result']['nome']
+        : 'Undefined';
     String? saluto =
         '<p style="text-align:center">Ciao, <strong>$nome</strong>!<br>Qui potrai controllare lo stato delle tue polizze e verificarne la data di scadenza.</p>';
     return Column(

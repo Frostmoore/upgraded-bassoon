@@ -73,6 +73,7 @@ class _LoginFormState extends State<LoginForm> {
                               borderSide:
                                   BorderSide(color: Colors.grey, width: 1.0)),
                         ),
+                        enableSuggestions: true,
                         controller: _username,
                         validator: (value) {
                           if (value == null || value.isEmpty) {

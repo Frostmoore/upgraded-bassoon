@@ -12,11 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:agenzia_x/sections/account/account_header.dart';
 import 'package:agenzia_x/sections/account/account_polizze.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 // import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'dart:convert';
+// import 'dart:convert';
 // import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AccountPage extends StatefulWidget {
   final data;
@@ -33,28 +33,6 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  Future<Map> _sendData() async {
-    final storage = FlutterSecureStorage();
-
-    var url = Uri.https(
-      constants.PATH,
-      constants.ENDPOINT_LOG,
-    );
-    var request = {
-      'id': constants.ID,
-      'token': constants.TOKEN,
-      'username': await storage.read(key: 'username'),
-      'password': await storage.read(key: 'password'),
-    };
-    var response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(request),
-    );
-    var responseParsed = jsonDecode(response.body) as Map;
-    return responseParsed;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
