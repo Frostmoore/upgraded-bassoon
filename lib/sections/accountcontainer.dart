@@ -11,7 +11,7 @@ import 'package:agenzia_x/sections/responses/reset_password.dart';
 import 'package:agenzia_x/sections/responses/login_fallito.dart';
 import 'package:agenzia_x/sections/responses/utente_non_attivo.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -26,7 +26,6 @@ class AccountContainer extends StatefulWidget {
 
 class _AccountContainerState extends State<AccountContainer> {
   Future<Map> _sendData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     final storage = FlutterSecureStorage();
 
     var url = Uri.https(
@@ -55,7 +54,6 @@ class _AccountContainerState extends State<AccountContainer> {
   @override
   Widget build(BuildContext context) {
     final Future _data = _sendData();
-    var width = MediaQuery.of(context).size.width;
 
     return FutureBuilder(
       future: _data,
@@ -63,7 +61,6 @@ class _AccountContainerState extends State<AccountContainer> {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
             var isLoggedIn = constants.isLoggedIn;
-            var dataUtente = constants.dataUtente;
             switch (isLoggedIn) {
               case 0:
                 return LoginForm(data: widget.data, logParent: refresh);
