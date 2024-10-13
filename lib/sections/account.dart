@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
 // import 'package:agenzia_x/sections/chiamata_rapida.dart';
@@ -8,7 +10,14 @@ import 'package:flutter/material.dart';
 //import 'package:notification_permissions/notification_permissions.dart';
 // import 'package:local_auth/local_auth.dart';
 // import 'dart:developer';
+import 'package:agenzia_x/sections/account/account_header.dart';
+import 'package:agenzia_x/sections/account/account_polizze.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
+import 'package:http/http.dart' as http;
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AccountPage extends StatefulWidget {
   final data;
@@ -25,81 +34,53 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  Future<Map> _sendData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final storage = FlutterSecureStorage();
+
+    var url = Uri.https(
+      constants.PATH,
+      constants.ENDPOINT_LOG,
+    );
+    var request = {
+      'id': constants.ID,
+      'token': constants.TOKEN,
+      'username': await storage.read(key: 'username'),
+      'password': await storage.read(key: 'password'),
+    };
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(request),
+    );
+    var responseParsed = jsonDecode(response.body) as Map;
+    return responseParsed;
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var nome = widget.dataUtente['result']['nome'];
-    String saluto =
-        'Ciao $nome, controlla i dettagli delle tue polizze e verificane i dati, qui avrai tutte le informazioni di cui potresti aver bisogno.';
-
-    return Container(
+    var saluto =
+        "<p style='text-align:center;'>Ciao, <strong>$nome!</strong><br>Qui potrai controllare le tue polizze, verificarne la data di scadenza e leggerne i dettagli più importanti.</p>";
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              constants.SPACER,
-              const Center(
-                child: Text(
-                  "LE MIE POLIZZE",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Center(
-                child: Text(
-                  saluto,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              constants.SPACER,
-              Accordion(
-                headerBorderWidth: 1,
-                headerBorderColor: Colors.transparent,
-                headerBorderColorOpened: Colors.transparent,
-                headerBackgroundColor: Colors.transparent,
-                headerBackgroundColorOpened: Colors.transparent,
-                contentBorderColor: Colors.transparent,
-                contentBackgroundColor: Colors.transparent,
-                contentHorizontalPadding: 0,
-                disableScrolling: true,
-                headerPadding: const EdgeInsets.all(0),
-                children: [
-                  AccordionSection(
-                    rightIcon: const Icon(
-                      Icons.arrow_drop_down_rounded,
-                      size: 45,
-                    ),
-                    header: SizedBox(
-                      width: width - 16,
-                      height: 70,
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(8, 18, 8, 8),
-                        child: Text(
-                          "Polizza n. 1",
-                          textAlign: TextAlign.start,
-                          style: constants.H1,
-                        ),
-                      ),
-                    ),
-                    content: Text("Info Polizza n. 1"),
-                  ),
-                ],
-              ),
-              constants.SPACER,
-              ElevatedButton(
-                style: constants.STILE_BOTTONE,
-                onPressed: () {
-                  constants.isLoggedIn = 0;
-                  widget.logParent();
-                },
-                child: Text("ESCI"),
-              )
-            ],
-          ),
+        child: Column(
+          children: [
+            constants.SPACER,
+            AccountHeader(data: widget.data, userData: widget.dataUtente),
+            constants.SPACER_MEDIUM,
+            AccountPolizze(data: widget.data, userData: widget.dataUtente),
+            constants.SPACER,
+            ElevatedButton(
+              onPressed: () {
+                constants.isLoggedIn = 0;
+                widget.logParent();
+              },
+              child: Text('ciao'),
+            )
+          ],
         ),
       ),
     );

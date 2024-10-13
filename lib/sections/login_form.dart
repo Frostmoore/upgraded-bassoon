@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:intl/intl.dart';
 // import 'package:agenzia_x/sections/register_form.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+// import 'package:http/http.dart' as http;
+// import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:agenzia_x/assets/constants.dart' as constants;
@@ -170,112 +170,15 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> _sendData(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final storage = FlutterSecureStorage();
-
     if (prefs.containsKey('local_auth_enabled')) {
-      if (prefs.getString('local_auth_enabled') == 'true') {
-        // Chiamata con local_auth_enabled
-        var username = await storage.containsKey(key: 'username')
-            ? storage.read(key: 'username')
-            : 'null';
-        var password = await storage.containsKey(key: 'password')
-            ? storage.read(key: 'password')
-            : 'null';
-        var url = Uri.https(
-          constants.PATH,
-          constants.ENDPOINT_LOG,
-        );
-        var request = {
-          'id': constants.ID,
-          'token': constants.TOKEN,
-          'username': username,
-          'password': password,
-        };
-        final response = await http.post(
-          url,
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode(request),
-        );
-        if (response.statusCode == 200) {
-          var responseParsed = jsonDecode(response.body) as Map;
-          constants.isLoggedIn =
-              int.parse(responseParsed['http_response_code']);
-          prefs.setString('notFirstTime', 'true');
-          constants.dataUtente = responseParsed;
-          widget.logParent();
-        } else {
-          constants.isLoggedIn = 100;
-          widget.logParent();
-        }
-      } else {
-        // Chiamata senza local_auth_enabled
-        var url = Uri.https(
-          constants.PATH,
-          constants.ENDPOINT_LOG,
-        );
-        var request = {
-          'id': constants.ID,
-          'token': constants.TOKEN,
-          'username': _username.text,
-          'password': _password.text,
-        };
-        final response = await http.post(
-          url,
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode(request),
-        );
-        if (response.statusCode == 200) {
-          var responseParsed = jsonDecode(response.body) as Map;
-          constants.isLoggedIn =
-              int.parse(responseParsed['http_response_code']);
-          if (prefs.containsKey('notFirstTime')) {
-            constants.dataUtente = responseParsed;
-            widget.logParent();
-          } else {
-            prefs.setString('notFirstTime', 'true');
-            await storage.write(key: 'username', value: _username.text);
-            await storage.write(key: 'password', value: _password.text);
-            constants.dataUtente = responseParsed;
-            widget.logParent();
-          }
-        } else {
-          constants.isLoggedIn = 100;
-          widget.logParent();
-        }
-      }
+      storage.write(key: 'username', value: _username.text);
+      storage.write(key: 'password', value: _password.text);
+      // Implement local_auth
     } else {
-      // Chiamata senza local_auth_enabled
-      var url = Uri.https(
-        constants.PATH,
-        constants.ENDPOINT_LOG,
-      );
-      var request = {
-        'id': constants.ID,
-        'token': constants.TOKEN,
-        'username': _username.text,
-        'password': _password.text,
-      };
-      final response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(request),
-      );
-      if (response.statusCode == 200) {
-        var responseParsed = jsonDecode(response.body) as Map;
-        constants.isLoggedIn = int.parse(responseParsed['http_response_code']);
-        if (prefs.containsKey('notFirstTime')) {
-          constants.dataUtente = responseParsed;
-          widget.logParent();
-        } else {
-          prefs.setString('notFirstTime', 'true');
-          await storage.write(key: 'username', value: _username.text);
-          await storage.write(key: 'password', value: _password.text);
-          constants.dataUtente = responseParsed;
-          widget.logParent();
-        }
-      } else {
-        constants.isLoggedIn = 100;
-        widget.logParent();
-      }
+      storage.write(key: 'username', value: _username.text);
+      storage.write(key: 'password', value: _password.text);
+      constants.isLoggedIn = 1;
+      widget.logParent();
     }
   }
 }

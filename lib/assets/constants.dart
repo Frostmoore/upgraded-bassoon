@@ -24,6 +24,7 @@ const String IMG_PATH = 'https://' + PATH + '/res/';
 const String BASE_ADDR = 'https://' + PATH + '/res/';
 int isLoggedIn = 0;
 var dataUtente;
+var loginData;
 
 //
 // STILI
