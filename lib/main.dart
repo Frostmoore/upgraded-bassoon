@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return responseBody;
   }
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
     setState(() {
       _selectedIndex = index;
     });

@@ -171,15 +171,9 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> _sendData(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final storage = FlutterSecureStorage();
-    if (prefs.containsKey('local_auth_enabled')) {
-      storage.write(key: 'username', value: _username.text);
-      storage.write(key: 'password', value: _password.text);
-      // Implement local_auth
-    } else {
-      storage.write(key: 'username', value: _username.text);
-      storage.write(key: 'password', value: _password.text);
-      constants.isLoggedIn = 1;
-      widget.logParent();
-    }
+    await storage.write(key: 'username', value: _username.text);
+    await storage.write(key: 'password', value: _password.text);
+    constants.isLoggedIn = 1;
+    widget.logParent();
   }
 }
