@@ -1,6 +1,7 @@
 import 'package:agenzia_x/assets/constants.dart' as constants;
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'dart:io';
 import 'package:agenzia_x/firebase_options.dart';
 import 'package:agenzia_x/home.dart';
 // import 'package:agenzia_x/sections/web_view_container.dart';
@@ -20,6 +21,15 @@ import 'package:flutter/services.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:notification_permissions/notification_permissions.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 Future<void> _messageHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   RemoteNotification? notification = message.notification;
@@ -30,6 +40,7 @@ Future<void> _messageHandler(RemoteMessage message) async {
 void main() async {
   //WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = new MyHttpOverrides(); // Remove in Production
   await Firebase.initializeApp(
     name: constants.TITLE,
     options: DefaultFirebaseOptions.currentPlatform,

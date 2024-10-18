@@ -26,6 +26,30 @@ int isLoggedIn = 0;
 var dataUtente;
 var loginData;
 
+// CHIAMATE POLIZZE
+// AssiEasy URLs
+var assiEasyPath = 'demo.assieasy.com';
+var urlAssiEasyLogin = Uri.https(
+  assiEasyPath,
+  '/assieasy/clienti/autenticazione/login',
+);
+var urlAssiEasyPolizze = Uri.https(
+  assiEasyPath,
+  '/assieasy/clienti/polizze/get',
+);
+var urlAssiEasyLogout = Uri.https(
+  assiEasyPath,
+  '/assieasy/clienti/autenticazione/logout',
+);
+
+var chiaveHi = 'ASSIHI';
+
+Map<String, Uri> assiEasy = {
+  'assiEasyLoginUrl': urlAssiEasyLogin,
+  'assiEasyPolizzeUrl': urlAssiEasyPolizze,
+  'assiEasyLogoutUrl': urlAssiEasyLogout,
+};
+
 //
 // STILI
 //
